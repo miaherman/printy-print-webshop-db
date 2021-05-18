@@ -1,0 +1,40 @@
+GET http://localhost:4000/api/product
+
+###
+
+GET http://localhost:4000/api/product/6082b60b24a3c921ddcc2cfa
+
+###
+
+POST http://localhost:4000/api/product/
+Content-Type: application/json
+
+{
+    "title": "Tavla 2",
+    "description": "mkt fin tavla",
+    "size": "50 x 70 cm",
+    "price": 4000000000,
+    "image": "https://desenio.se/bilder/artiklar/zoom/13675_2.jpg?imgwidth=435&qt=Abstrakt%20motiv%20i%20beige",
+    "path": "tavla-dyr",
+    "category": "text",
+    "stock": 10
+}
+
+###
+
+PUT http://localhost:4000/api/product/60a3817fe9a614153eee3092
+Content-Type: application/json
+
+{
+    "title": "En uppdaterad tavla",
+    "description": "mkt fin tavla",
+    "size": "50 x 70 cm",
+    "price": 4000000000,
+    "image": "https://desenio.se/bilder/artiklar/zoom/14538_2.jpg?imgwidth=435&qt=Beige%20m%C3%A5lning",
+    "path": "tavla-dyr",
+    "category": "text",
+    "stock": 12
+}
+
+###
+DELETE http://localhost:4000/api/product/60a38cd48d627617d5ae19a7

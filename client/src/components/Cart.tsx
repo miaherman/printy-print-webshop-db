@@ -40,7 +40,7 @@ function Cart() {
       ) : (
         <div className={classes.flex}>
           {cart.map((product) => (
-            <div key={product.id}>
+            <div key={product._id}>
               <Card className={classes.root}>
                 <CardActionArea>
                   <Link

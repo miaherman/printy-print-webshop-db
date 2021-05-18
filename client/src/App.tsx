@@ -9,10 +9,12 @@ import Checkout from "./components/Checkout";
 import ButtonAppBar from "./components/buttonAppBar";
 import CartProvider from "./contexts/CartContext";
 import ProductView from "./components/productView";
+import Admin from "./components/admin";
 import Main from "./components/main";
 import Orderconfirmation from "./components/Orderconfirmation";
 import PageAnimation from "./wrapper/PageAnimation";
 import { AnimatePresence } from "framer-motion";
+import ProductProvider from "./contexts/ProductContext";
 
 const useStyles = makeStyles((theme) => ({
   App: {
@@ -27,6 +29,7 @@ function App() {
   return (
     <div className={classes.App}>
       <ThemeProvider theme={theme}>
+        <ProductProvider>
         <CartProvider>
           <CssBaseline />
           <ButtonAppBar />
@@ -36,6 +39,12 @@ function App() {
               <Route exact path="/">
                 <PageAnimation>
                   <Main />
+                </PageAnimation>
+              </Route>
+
+              <Route exact path="/admin">
+                <PageAnimation>
+                  <Admin />
                 </PageAnimation>
               </Route>
 
@@ -59,6 +68,7 @@ function App() {
           </Switch>
           </AnimatePresence>
         </CartProvider>
+        </ProductProvider>
       </ThemeProvider>
     </div>
   );

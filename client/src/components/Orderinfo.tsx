@@ -35,7 +35,7 @@ const Orderinfo = () => {
 
       <h3>Produkter:</h3>
       {cart.map((product) => (
-        <div key={product.id}>
+        <div key={product._id}>
           <p>
             {product.title} {product.quantity}&nbsp;st
           </p>

@@ -2,7 +2,7 @@ import { Button, makeStyles, Theme, Typography } from "@material-ui/core";
 import React, { useContext, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
-import { products } from "../products";
+import { ProductContext } from "../contexts/ProductContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -53,6 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 function ProductView() {
   const classes = useStyles();
   const { addToCart } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
+
 
   const match = useRouteMatch<{ path: string }>();
   const product = products.find((p) => p.path === match.params.path);

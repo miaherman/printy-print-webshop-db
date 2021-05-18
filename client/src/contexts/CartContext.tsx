@@ -1,5 +1,5 @@
 import { Component, createContext } from "react";
-import { Product } from "../products";
+import { Product } from "./ProductContext";
 
 export interface Order {
   id: number;
@@ -202,7 +202,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item.id === product.id
+      (item) => item._id === product._id
     );
 
     if (updatedItemIndex < 0) {
@@ -224,7 +224,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item.id === product.id
+      (item) => item._id === product._id
     );
 
     const updatedItem = {
@@ -247,7 +247,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item.id === product.id
+      (item) => item._id === product._id
     );
 
     const updatedItem = {

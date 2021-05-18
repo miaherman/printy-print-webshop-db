@@ -14,9 +14,10 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import { CartContext } from "../contexts/CartContext";
-import { products } from "../products";
+// import { products } from "../products";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ProductContext } from "../contexts/ProductContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   gridContainer: {
@@ -52,11 +53,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 function ProductGrid() {
   const classes = useStyles();
   const { addToCart } = useContext(CartContext);
+  const { products } = useContext(ProductContext);
 
   return (
     <Grid container justify="center" className={classes.gridContainer}>
       {products.map((product) => (
-        <motion.div key={product.id} whileHover={{ scale: 1.05 }}>
+        <motion.div key={product._id} whileHover={{ scale: 1.05 }}>
           <Grid item>
             <Card className={classes.root}>
               <Link
