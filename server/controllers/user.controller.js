@@ -1,4 +1,6 @@
 const UserModel = require("../models/user.model");
+const bcrypt = require("bcrypt");
+
 
 //Hämtar alla våra användare
 exports.getAllUsers = async (req, res) => {
@@ -6,47 +8,57 @@ exports.getAllUsers = async (req, res) => {
     res.status(200).json(docs);
   };
   
-  // Hämtar en specifik användare
-  exports.getUserById = async (req, res) => {
-    const docs = await UserModel.find({});
-    res.status(200).json(docs);
-  };
-  
   //Skapar en användare
   exports.createUser = async (req, res) => {
-    // const newUser = new UserModel({
-    //   role: req.body.role,
-    //   username: req.body.username,
-    //   password: req.body.password,
-    // });
-  
-    // if (newUser) {
-    //   const doc = await UserModel.create(newUser);
-    //   return res.status(201).json(doc);
-    // } else {
-    //   return res.status(404).json("FEL FEL FEL");
-    // }
-  };
-  
-  // Uppdaterar användaruppgifter
-  exports.updateUser = async (req, res) => {
-    const doc = await UserModel.findOne({ _id: req.params.id });
 
-  const updatedUser = new UserModel(Object.assign(doc, req.body));
-  await updatedUser.save();
-  res.json("User updated");
-  };
-  
-  //Tar bort en användare
-  exports.deleteUser = async (req, res) => {
-    const doc = await UserModel.findOne({ _id: req.params.id });
+    const { role, username, password } = req.body;
 
-    if (doc) {
-      await doc.remove();
-      res.status(201).json(doc);
-    } else {
-      res.status(404).json("User does not exist");
+    const existinguser = await UserModel.findOne({ username: req.body.username });
+
+    //Kollar om användaren existerar
+    if(existinguser) {
+        return res.status(400).json("Username exists");
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new UserModel({role, username, password: hashedPassword})
+
+    //Lägger till användaren i databasen
+    const doc = await UserModel.create(newUser);
+    res.status(201).json(doc);
+  };
+
+  //Loggar in användaren
+exports.loginUser = async (req, res) => {
+
+  const user = await UserModel.findOne({ username: req.body.username }).select('+password')
+
+  if (!user || (!await bcrypt.compare(req.body.password, user.password))) {
+      return res.status(401).json("Wrong username or password");
+  }
+  //Sparar den hämtade användaren i sessionen
+  req.session.user = user._id
+  req.session.username = user.username
+  delete user.password
+  res.status(201).json(user);  
+};
+  
+//Kollar av sessionen mot en specifik användare
+exports.authenticate = (req, res) => {
+  res.status(200).json({
+      _id: req.session.user,
+      username: req.session.username
+  })
+}
+
+// Loggar ut en användare
+  exports.logoutUser = async (req, res) => {
+    if (req.session.user) {
+      req.session = null;
+      res.json('Byeyeyeyeye');
+      return
+  }
+
+  res.status(404).json('No user is logged in');
   };
   
   
