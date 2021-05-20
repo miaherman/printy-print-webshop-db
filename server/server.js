@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 require("express-async-errors");
 const productRouter = require("./routers/product.router");
 // const orderRouter = require("./routers/order.router");
-// const userRouter = require("./routers/user.router");
+const userRouter = require("./routers/user.router");
 const cookieSession = require("cookie-session");
 
 const port = 4000;
@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use(productRouter);
-// app.use(userRouter);
+app.use(userRouter);
 // app.use(orderRouter);
 
 app.use((err, req, res, next) => {
