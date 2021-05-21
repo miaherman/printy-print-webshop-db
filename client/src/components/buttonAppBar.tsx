@@ -53,11 +53,6 @@ export default function ButtonAppBar() {
                 Login
             </IconButton>
           </Link>
-          <Link style={{ color: "inherit" }} to="/admin">
-            <IconButton aria-label="" color="inherit">
-                Admin
-            </IconButton>
-          </Link>
           <Link style={{ color: "inherit" }} to="/checkout">
             <IconButton aria-label="" color="inherit">
               <Badge

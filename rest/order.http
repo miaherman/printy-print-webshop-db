@@ -6,3 +6,9 @@ GET http://localhost:4000/api/order:id/
 ###
 
 POST http://localhost:4000/api/order/
+
+{
+    "shipping": "express",
+    "price": 100,
+    "products": "['hej']"
+}

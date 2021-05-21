@@ -14,11 +14,13 @@ exports.getOrderById = async (req, res) => {
 
 //Skapar en order
 exports.createOrder = async (req, res) => {
+
+  const { shipping, price, products } = req.body
+
   const newOrder = new OrderModel({
-    shipping: req.body.shipping,
-    price: req.body.price,
-    createdAt: req.body.date,
-    products: req.body.products,
+    shipping,
+    price,
+    products,
   });
 
   if (newOrder) {

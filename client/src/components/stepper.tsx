@@ -92,9 +92,9 @@ export default function VerticalLinearStepper() {
     const testProducts = [testProduct]
 
     const order: Order = {
-      products: testProducts,
       shipping: delivery.deliveryType,
       price: orderPrice + delivery.deliveryPrice,
+      products: testProducts,
     };
 
     createOrder(order);
