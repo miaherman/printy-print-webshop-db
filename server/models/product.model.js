@@ -8,7 +8,8 @@ const productSchema = new mongoose.Schema({
   image: { type: "String", required: true },
   path: { type: "String", required: true },
   category: { type: "String", required: true },
-  stock: { type: "Number", required: true}
+  stock: { type: "Number", required: true },
+  quantity: { type: "Number", required: true }
 });
 
 const ProductModel = mongoose.model("product", productSchema);

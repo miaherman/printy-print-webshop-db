@@ -15,14 +15,10 @@ exports.getOrderById = async (req, res) => {
 //Skapar en order
 exports.createOrder = async (req, res) => {
   const newOrder = new OrderModel({
-    title: req.body.title,
-    description: req.body.description,
-    size: req.body.size,
+    shipping: req.body.shipping,
     price: req.body.price,
-    image: req.body.image,
-    path: req.body.path,
-    category: req.body.category,
-    stock: req.body.stock
+    createdAt: req.body.date,
+    products: req.body.products,
   });
 
   if (newOrder) {
@@ -34,16 +30,16 @@ exports.createOrder = async (req, res) => {
 };
 
 // Uppdaterar en order 
-exports.updateOrder = async (req, res) => {
+/* exports.updateOrder = async (req, res) => {
   const doc = await OrderModel.findOne({ _id: req.params.id });
 
   const updatedOrder = new OrderModel(Object.assign(doc, req.body));
   await updatedOrder.save();
   res.json("Order updated");
-};
+}; */
 
 //Tar bort en order
-exports.deleteOrder = async (req, res) => {
+/* exports.deleteOrder = async (req, res) => {
   const doc = await OrderModel.findOne({ _id: req.params.id });
 
   if (doc) {
@@ -52,4 +48,4 @@ exports.deleteOrder = async (req, res) => {
   } else {
     res.status(404).json("Order does not exist");
   }
-};
+}; */

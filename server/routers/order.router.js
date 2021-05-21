@@ -16,9 +16,9 @@ router.get("/api/order/:id", controller.getOrderById);
 router.post("/api/order", controller.createOrder);
 
 // Uppdaterar en order
-router.put("/api/order/:id", controller.updateOrder);
+//router.put("/api/order/:id", controller.updateOrder);
 
 //Tar bort en ordrar
-router.delete("/api/order/:id", controller.deleteOrder);
+//router.delete("/api/order/:id", controller.deleteOrder);
 
 module.exports = router;
