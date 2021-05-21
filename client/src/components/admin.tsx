@@ -61,7 +61,7 @@ function Admin() {
       <div className={classes.demo}>
         <List dense={false}>
           {products.map((product) => (
-            <ListItem className={classes.listItem} key={product._id}>
+            <ListItem className={classes.listItem} key={product.title}>
               <ListItemAvatar>
                 <Avatar>
                   <img src={product.image} alt={product.description} />
@@ -96,7 +96,7 @@ function Admin() {
       <div className={classes.demo}>
         <List dense={false}>
           {products.map((product) => (
-            <ListItem className={classes.listItem} key={product._id}>
+            <ListItem className={classes.listItem} key={product.title}>
               <ListItemAvatar>
                 <Avatar>
                   <img src={product.image} alt={product.description} />

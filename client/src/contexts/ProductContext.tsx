@@ -1,7 +1,6 @@
 import { Component, createContext } from "react";
 
 export interface Product {
-  _id: number;
   title: string;
   description: string;
   price: number;
@@ -9,7 +8,8 @@ export interface Product {
   size: string;
   path: string;
   category: string;
-  stock: number;
+  stock?: number;
+  quantity?: number;
 }
 
 interface State {
@@ -57,7 +57,7 @@ class ProductProvider extends Component<{}, State> {
 
     const newBody = { ...editedProduct, stock: newStock }
 
-    await this.makeRequest(`/api/product/${editedProduct._id}`, "PUT", newBody);
+    await this.makeRequest(`/api/product/${editedProduct.title}`, "PUT", newBody);
     this.getProductsFromDb();
   };
 

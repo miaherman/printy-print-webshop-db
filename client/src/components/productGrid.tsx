@@ -58,7 +58,7 @@ function ProductGrid() {
   return (
     <Grid container justify="center" className={classes.gridContainer}>
       {products.map((product) => (
-        <motion.div key={product._id} whileHover={{ scale: 1.05 }}>
+        <motion.div key={product.title} whileHover={{ scale: 1.05 }}>
           <Grid item>
             <Card className={classes.root}>
               <Link

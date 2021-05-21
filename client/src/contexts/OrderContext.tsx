@@ -1,30 +1,36 @@
 import { Component, createContext } from "react";
+import { Product } from "./ProductContext";
 
 
-export interface Order {
+export interface Order{
   shipping: string;
   price: number;
-  Orders: [];
+  products: Product[];
 }
 
 interface State {
+  products: Product[];
   orders: Order[];
 }
 
 interface ContextValue extends State {
   getOrdersFromDb: () => void;
-  makeRequest: (url: string, method: string, body?: any) => void,                                              
-}
+  makeRequest: (url: string, method: string, body?: any) => void,
+  createOrder: (order: Order) => void;                                             
+} 
 
 export const OrderContext = createContext<ContextValue>({
+  products: [],
   orders: [],
   makeRequest: () => {},
   getOrdersFromDb: () => {},
+  createOrder: () => {}
 });
 
-class ProductProvider extends Component<{}, State> {
+class OrderProvider extends Component<{}, State> {
   state: State = {
-    orders: [],
+    products: [],
+    orders: []
   };
 
   makeRequest = async (url: string, method: string, body?: any) => {
@@ -46,6 +52,14 @@ class ProductProvider extends Component<{}, State> {
     this.setState({ orders: orders });
   };
 
+  createOrder = async (order: Order) => {
+    const body = { order: order };
+    const doc = await this.makeRequest("/api/order", "POST", body);
+
+    alert('Ny order skapad');
+    return doc;
+  };
+
 
   componentDidMount() {
     this.getOrdersFromDb();
@@ -58,6 +72,7 @@ class ProductProvider extends Component<{}, State> {
           ...this.state,
           makeRequest: this.makeRequest,
           getOrdersFromDb: this.getOrdersFromDb,
+          createOrder: this.createOrder
         }}
       >
         {this.props.children}
@@ -66,4 +81,4 @@ class ProductProvider extends Component<{}, State> {
   }
 }
 
-export default ProductProvider;
+export default OrderProvider;

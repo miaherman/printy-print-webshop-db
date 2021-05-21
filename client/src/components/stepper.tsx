@@ -10,7 +10,9 @@ import CustomerInfo from "./CustomerInfo";
 import DeliveryInfo from "./DeliveryInfo";
 import PaymentInfo from "./PaymentInfo";
 import Orderinfo from "./Orderinfo";
-import { CartContext, Order } from "../contexts/CartContext";
+import { CartContext } from "../contexts/CartContext";
+import { OrderContext, Order } from "../contexts/OrderContext";
+import { Product } from "../contexts/ProductContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
 
@@ -55,9 +57,13 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { createOrderId, payment, customer, cart, orderPrice, delivery } = useContext(
+  const { orderPrice, delivery } = useContext(
     CartContext
   );
+
+  // createOrderId, payment, customer, cart,
+
+  const { createOrder } = useContext(OrderContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -72,14 +78,26 @@ export default function VerticalLinearStepper() {
   const completeBooking = async () => {
     setDisabled(true);
 
+    const testProduct: Product = {
+      title: "produkt",
+      description: "string",
+      price: 10,
+      image: "url",
+      size: "50 x 70",
+      path: "url",
+      category: "text",
+      stock: 10
+    }
+
+    const testProducts = [testProduct]
+
     const order: Order = {
-      id: createOrderId(),
-      customer: customer,
-      cart: cart,
-      deliveryType: delivery.deliveryType,
-      paymentType: payment.paymentType,
-      totalPrice: orderPrice + delivery.deliveryPrice,
+      products: testProducts,
+      shipping: delivery.deliveryType,
+      price: orderPrice + delivery.deliveryPrice,
     };
+
+    createOrder(order);
 
     await mockApi(order);
     navigateToNextPage();

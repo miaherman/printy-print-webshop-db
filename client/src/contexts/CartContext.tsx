@@ -202,7 +202,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item._id === product._id
+      (item) => item.title === product.title
     );
 
     if (updatedItemIndex < 0) {
@@ -224,7 +224,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item._id === product._id
+      (item) => item.title === product.title
     );
 
     const updatedItem = {
@@ -247,7 +247,7 @@ class CartProvider extends Component<{}, State> {
     const updatedCart = [...this.state.cart];
 
     const updatedItemIndex = updatedCart.findIndex(
-      (item) => item._id === product._id
+      (item) => item.title === product.title
     );
 
     const updatedItem = {

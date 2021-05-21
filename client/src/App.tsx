@@ -18,10 +18,12 @@ import PageAnimation from "./wrapper/PageAnimation";
 import { AnimatePresence } from "framer-motion";
 import ProductProvider from "./contexts/ProductContext";
 import UserProvider from "./contexts/UserContext";
+import OrderProvider from "./contexts/OrderContext";
+import Footer from "./components/Footer";
 
 const useStyles = makeStyles((theme) => ({
   App: {
-    minHeight: '100vh'
+    minHeight: "100vh",
   },
 }));
 
@@ -33,58 +35,60 @@ function App() {
     <div className={classes.App}>
       <ThemeProvider theme={theme}>
         <UserProvider>
-        <ProductProvider>
-        <CartProvider>
-          <CssBaseline />
-          <ButtonAppBar />
-          <AnimatePresence exitBeforeEnter>
+          <ProductProvider>
+            <OrderProvider>
+              <CartProvider>
+                <CssBaseline />
+                <ButtonAppBar />
+                <AnimatePresence exitBeforeEnter>
+                  <Switch location={location} key={location.key}>
+                    <Route exact path="/">
+                      <PageAnimation>
+                        <Main />
+                      </PageAnimation>
+                    </Route>
 
-          <Switch location={location} key={location.key}>
-              <Route exact path="/">
-                <PageAnimation>
-                  <Main />
-                </PageAnimation>
-              </Route>
+                    <Route exact path="/register">
+                      <PageAnimation>
+                        <Register />
+                      </PageAnimation>
+                    </Route>
 
-              <Route exact path="/register">
-                <PageAnimation>
-                  <Register />
-                </PageAnimation>
-              </Route>
-              
-              <Route exact path="/login">
-                <PageAnimation>
-                  <Login />
-                </PageAnimation>
-              </Route>
+                    <Route exact path="/login">
+                      <PageAnimation>
+                        <Login />
+                      </PageAnimation>
+                    </Route>
 
-              <Route exact path="/admin">
-                <PageAnimation>
-                  <Admin />
-                </PageAnimation>
-              </Route>
+                    <Route exact path="/admin">
+                      <PageAnimation>
+                        <Admin />
+                      </PageAnimation>
+                    </Route>
 
-              <Route path="/products/:path">
-                <PageAnimation>
-                  <ProductView />
-                </PageAnimation>
-              </Route>
+                    <Route path="/products/:path">
+                      <PageAnimation>
+                        <ProductView />
+                      </PageAnimation>
+                    </Route>
 
-              <Route path="/checkout">
-                <PageAnimation>
-                  <Checkout />
-                </PageAnimation>
-              </Route>
+                    <Route path="/checkout">
+                      <PageAnimation>
+                        <Checkout />
+                      </PageAnimation>
+                    </Route>
 
-              <Route path="/orderconfirmation">
-                <PageAnimation>
-                  <Orderconfirmation />
-                </PageAnimation>
-              </Route>
-          </Switch>
-          </AnimatePresence>
-        </CartProvider>
-        </ProductProvider>
+                    <Route path="/orderconfirmation">
+                      <PageAnimation>
+                        <Orderconfirmation />
+                      </PageAnimation>
+                    </Route>
+                  </Switch>
+                </AnimatePresence>
+                <Footer />
+              </CartProvider>
+            </OrderProvider>
+          </ProductProvider>
         </UserProvider>
       </ThemeProvider>
     </div>
