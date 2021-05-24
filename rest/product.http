@@ -10,16 +10,15 @@ POST http://localhost:4000/api/product/
 Content-Type: application/json
 
 {
-    "title": "Tavla 2",
-    "description": "mkt fin tavla",
+    "title": "Lilac Abstract",
+    "description": "Grafisk illustration med svarta abstrakta former och en lila rektangel bakom, på en beige bakgrund med svart text upptill och nedtill.",
     "size": "50 x 70 cm",
-    "price": 4000000000,
-    "image": "https://desenio.se/bilder/artiklar/zoom/13675_2.jpg?imgwidth=435&qt=Abstrakt%20motiv%20i%20beige",
-    "path": "tavla-dyr",
-    "category": "text",
+    "price": 500,
+    "image": "https://desenio.se/bilder/artiklar/zoom/14767_2.jpg?imgwidth=435&qt=Svarta%20former",
+    "path": "lilac-abstract-poster",
+    "category": "abstract",
     "stock": 10
 }
-
 ###
 
 PUT http://localhost:4000/api/product/60a3817fe9a614153eee3092

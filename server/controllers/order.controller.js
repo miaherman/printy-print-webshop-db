@@ -14,7 +14,7 @@ exports.getOrderById = async (req, res) => {
 
 //Skapar en order
 exports.createOrder = async (req, res) => {
-
+  console.log(req.body);
   const { shipping, price, products } = req.body
 
   const newOrder = new OrderModel({

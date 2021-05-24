@@ -12,7 +12,7 @@ import PaymentInfo from "./PaymentInfo";
 import Orderinfo from "./Orderinfo";
 import { CartContext } from "../contexts/CartContext";
 import { OrderContext, Order } from "../contexts/OrderContext";
-import { Product } from "../contexts/ProductContext";
+// import { Product } from "../contexts/ProductContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
 
@@ -57,7 +57,7 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { orderPrice, delivery } = useContext(
+  const { cart, orderPrice, delivery } = useContext(
     CartContext
   );
 
@@ -78,23 +78,10 @@ export default function VerticalLinearStepper() {
   const completeBooking = async () => {
     setDisabled(true);
 
-    const testProduct: Product = {
-      title: "produkt",
-      description: "string",
-      price: 10,
-      image: "url",
-      size: "50 x 70",
-      path: "url",
-      category: "text",
-      stock: 10
-    }
-
-    const testProducts = [testProduct]
-
     const order: Order = {
       shipping: delivery.deliveryType,
       price: orderPrice + delivery.deliveryPrice,
-      products: testProducts,
+      products: cart,
     };
 
     createOrder(order);
@@ -105,6 +92,7 @@ export default function VerticalLinearStepper() {
 
   async function mockApi(order: Order) {
     console.log(order);
+    console.log(cart)
     await timeOut();
     return true;
   }
