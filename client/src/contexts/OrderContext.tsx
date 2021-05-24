@@ -53,6 +53,7 @@ class OrderProvider extends Component<{}, State> {
   };
 
   createOrder = async (order: Order) => {
+    console.log(order)
     const doc = await this.makeRequest("/api/order", "POST", order);
 
     alert('Ny order skapad');

@@ -3,7 +3,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Cart from "./Cart";
 
-import VerticalLinearStepper from "./stepper";
+import VerticalLinearStepper from "./Stepper";
 import { CartContext } from "../contexts/CartContext";
 
 const useStyles = makeStyles((theme: Theme) => ({

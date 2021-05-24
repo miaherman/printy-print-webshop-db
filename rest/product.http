@@ -10,12 +10,12 @@ POST http://localhost:4000/api/product/
 Content-Type: application/json
 
 {
-    "title": "Lilac Abstract",
-    "description": "Grafisk illustration med svarta abstrakta former och en lila rektangel bakom, på en beige bakgrund med svart text upptill och nedtill.",
+    "title": "Yellow Cuts",
+    "description": "Grafisk illustration med vita former som bildar ett abstrakt mönster på en gul bakgrund.",
     "size": "50 x 70 cm",
-    "price": 500,
-    "image": "https://desenio.se/bilder/artiklar/zoom/14767_2.jpg?imgwidth=435&qt=Svarta%20former",
-    "path": "lilac-abstract-poster",
+    "price": 350,
+    "image": "https://desenio.se/bilder/artiklar/zoom/14650_2.jpg?imgwidth=435&qt=Abstrakta%20former",
+    "path": "yellow-cuts",
     "category": "abstract",
     "stock": 10
 }
@@ -25,14 +25,14 @@ PUT http://localhost:4000/api/product/60a3817fe9a614153eee3092
 Content-Type: application/json
 
 {
-    "title": "En uppdaterad tavla",
-    "description": "mkt fin tavla",
-    "size": "50 x 70 cm",
-    "price": 4000000000,
-    "image": "https://desenio.se/bilder/artiklar/zoom/14538_2.jpg?imgwidth=435&qt=Beige%20m%C3%A5lning",
-    "path": "tavla-dyr",
-    "category": "text",
-    "stock": 12
+    "title": "",
+    "description": "",
+    "size": "",
+    "price": 0,
+    "image": "",
+    "path": "",
+    "category": "",
+    "stock": 0
 }
 
 ###

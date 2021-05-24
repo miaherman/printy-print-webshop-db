@@ -35,7 +35,8 @@ exports.createProduct = async (req, res) => {
 
 // Uppdaterar en produkt
 exports.updateProduct = async (req, res) => {
-  const doc = await ProductModel.findOne({ _id: req.params.id });
+
+  const doc = await ProductModel.findOne({ _id: req.body._id });
 
   const updatedProduct = new ProductModel(Object.assign(doc, req.body));
   await updatedProduct.save();
@@ -44,7 +45,7 @@ exports.updateProduct = async (req, res) => {
 
 //Tar bort en produkt
 exports.deleteProduct = async (req, res) => {
-  const doc = await ProductModel.findOne({ _id: req.params.id });
+  const doc = await ProductModel.findOne({ _id: req.body._id });
 
   if (doc) {
     await doc.remove();
