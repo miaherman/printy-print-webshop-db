@@ -8,8 +8,8 @@ export interface Product {
   size: string;
   path: string;
   category: string;
-  stock?: number;
-  quantity?: number;
+  stock: number;
+  quantity: number;
 }
 
 interface State {

@@ -2,7 +2,8 @@ import React, { ChangeEvent, useContext, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles, Theme } from "@material-ui/core";
 import { useState } from "react";
-import { CartContext } from "../contexts/CartContext";
+// import { CartContext } from "../contexts/CartContext";
+import { UserContext } from "../contexts/UserContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -26,7 +27,7 @@ interface Props {
 
 function CustomerInfo({ onErrorChange }: Props) {
   const classes = useStyles();
-  const { customer, createCustomer } = useContext(CartContext);
+  const { customer, createCustomer, loggedIn } = useContext(UserContext);
 
   const [firstNameError, setFirstNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
@@ -35,8 +36,10 @@ function CustomerInfo({ onErrorChange }: Props) {
   const [cityError, setCityError] = useState("");
   const [mobileNumberError, setMobileNumberError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
+
     const hasError = Boolean(
       firstNameError ||
         lastNameError ||
@@ -44,7 +47,8 @@ function CustomerInfo({ onErrorChange }: Props) {
         postalCodeError ||
         cityError ||
         mobileNumberError ||
-        emailError
+        emailError ||
+        passwordError
     );
     const hasMissingInfo =
       !customer.firstName ||
@@ -53,7 +57,8 @@ function CustomerInfo({ onErrorChange }: Props) {
       !customer.zipCode ||
       !customer.city ||
       !customer.phoneNr ||
-      !customer.email;
+      !customer.email ||
+      !customer.password;
     onErrorChange(hasError || hasMissingInfo);
   }, [
     firstNameError,
@@ -63,6 +68,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     cityError,
     mobileNumberError,
     emailError,
+    passwordError,
     customer,
     onErrorChange
   ]);
@@ -128,7 +134,7 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, email: e.target.value, role: "customer", password: "password", username: "user" });
+    createCustomer({ ...customer, email: e.target.value, role: "customer", password: "password"});
 
     if (
       !/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -139,6 +145,21 @@ function CustomerInfo({ onErrorChange }: Props) {
     } else {
       setEmailError("");
     }
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    createCustomer({ ...customer, password: e.target.value, role: "customer"});
+
+    // if (
+    //   !/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    //     e.target.value
+    //   )
+    // ) {
+    //   setPasswordError("Var god ange en korrekt password");
+    // } else {
+    //   setPasswordError("");
+    // }
+    setPasswordError("");
   };
 
   return (
@@ -261,6 +282,27 @@ function CustomerInfo({ onErrorChange }: Props) {
           helperText={mobileNumberError}
           error={Boolean(mobileNumberError)}
         />
+
+          {loggedIn ? null : 
+          <TextField
+          value={customer.password}
+          onChange={handlePasswordChange}
+          id="password"
+          label="Password"
+          type="password"
+          required
+          style={{ margin: 8 }}
+          fullWidth
+          margin="normal"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="outlined"
+          helperText={passwordError}
+          error={Boolean(passwordError)}
+        />}
+        
+
       </form>
     </div>
   );

@@ -2,12 +2,12 @@ import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { UserContext } from "../contexts/UserContext";
+import CustomerInfo from './CustomerInfo';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
 
-  const { registerUser } = useContext(UserContext);
+  const [hasErrorInForm, setHasErrorInForm] = useState(true);
+
+  const { registerUser, customer } = useContext(UserContext);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,37 +48,17 @@ export default function Register() {
           Register
         </Typography>
         <form className={classes.form} noValidate onSubmit={e => e.preventDefault()}>
-          <TextField
-            onChange={ (event) => setUsername(event.target.value)}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-          />
-          <TextField
-            onChange={ (event) => setPassword(event.target.value)}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
+          
+
+          <CustomerInfo onErrorChange={setHasErrorInForm}/>
           <Button
-            onClick={ async () => await registerUser('customer', username, password) }
+            onClick={ async () => await registerUser(customer)}
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={hasErrorInForm}
           >
             Register
           </Button>

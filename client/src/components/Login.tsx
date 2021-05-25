@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Logi() {
   const classes = useStyles();
   
-  const [username, setUsername] = useState("")
+  const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
 
   const { loginUser } = useContext(UserContext);
@@ -49,15 +49,15 @@ export default function Logi() {
         </Typography>
         <form className={classes.form} noValidate onSubmit={e => e.preventDefault()}>
           <TextField
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="email"
             autoFocus
           />
           <TextField
@@ -73,7 +73,7 @@ export default function Logi() {
             autoComplete="current-password"
           />
           <Button
-            onClick={async () => await loginUser(username, password)}
+            onClick={async () => await loginUser(email, password)}
             type="submit"
             fullWidth
             variant="contained"

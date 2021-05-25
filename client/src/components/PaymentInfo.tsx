@@ -8,6 +8,7 @@ import {
   RadioGroup,
 } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
+import { UserContext } from "../contexts/UserContext";
 
 interface Props {
   onErrorChange: (error: boolean) => void;
@@ -16,7 +17,8 @@ interface Props {
 }
 
 function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
-  const { customer, getPayment, payment, cardDetails, invoice, getInvoiceDetails, getCardDetails } = useContext(CartContext);
+  const { getPayment, payment, cardDetails, invoice, getInvoiceDetails, getCardDetails } = useContext(CartContext);
+  const { customer } = useContext(UserContext);
   const [swishNumber, setSwishNumber] = useState(customer.phoneNr);
 
   const [swishError, setSwishError] = useState("");

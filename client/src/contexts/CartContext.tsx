@@ -59,7 +59,6 @@ export const CartContext = createContext<ContextValue>({
   removeAllFromCart: () => {},
   emptyCart: () => {},
   customer: {
-    username: "",
     password: "",
     role: "",
     address: "",
@@ -98,7 +97,6 @@ class CartProvider extends Component<{}, State> {
   state: State = {
     cart: [],
     customer: {
-      username: "",
       password: "",
       role: "",
       address: "",
@@ -168,7 +166,6 @@ class CartProvider extends Component<{}, State> {
     this.setState({
       cart: [],
       customer: {
-        username: "",
         password: "",
         role: "",
         address: "",

@@ -9,6 +9,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Badge, Theme } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
+import { UserContext } from "../contexts/UserContext";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
   const { cart } = useContext(CartContext);
+  const { loggedIn, logOutUser } = useContext(UserContext);
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
@@ -43,16 +45,28 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             PrintyPrint
           </Typography>
+
+          {loggedIn ? 
+          <Link style={{ color: "inherit" }} to="/">
+            <IconButton onClick={logOutUser} aria-label="" color="inherit">
+                Logout
+            </IconButton>
+          </Link> : 
+          <>
           <Link style={{ color: "inherit" }} to="/register">
             <IconButton aria-label="" color="inherit">
                 Register
             </IconButton>
           </Link>
+
           <Link style={{ color: "inherit" }} to="/login">
             <IconButton aria-label="" color="inherit">
                 Login
             </IconButton>
           </Link>
+          </>}
+          
+
           <Link style={{ color: "inherit" }} to="/checkout">
             <IconButton aria-label="" color="inherit">
               <Badge

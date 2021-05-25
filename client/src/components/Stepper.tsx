@@ -15,6 +15,9 @@ import { OrderContext, Order } from "../contexts/OrderContext";
 // import { Product } from "../contexts/ProductContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
+import { UserContext } from "../contexts/UserContext";
+import { ProductContext } from "../contexts/ProductContext";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,12 +39,12 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       width: "100%",
       alignItems: "center",
-      justifyContent: "center"
+      justifyContent: "center",
     },
 
     circularProgress: {
-      marginTop: theme.spacing(2),      
-      },
+      marginTop: theme.spacing(2),
+    },
   })
 );
 
@@ -57,13 +60,14 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { customer, cart, orderPrice, delivery } = useContext(
-    CartContext
-  );
+  const { cart, orderPrice, delivery } = useContext(CartContext);
+
+  const { loggedIn, customer } = useContext(UserContext);
 
   // createOrderId, payment, customer, cart,
 
   const { createOrder } = useContext(OrderContext);
+  const { editProduct } = useContext(ProductContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,8 +79,14 @@ export default function VerticalLinearStepper() {
     history.push("/orderconfirmation");
   }
 
+  function navigateToStartPage() {
+    history.push("/");
+  }
+
   const completeBooking = async () => {
     setDisabled(true);
+
+    console.log(customer);
 
     const order: Order = {
       customer: customer,
@@ -85,15 +95,32 @@ export default function VerticalLinearStepper() {
       products: cart,
     };
 
-    createOrder(order);
+    for (const product of order.products) {
+      if (
+        !product.stock ||
+        !product.quantity ||
+        product.stock < product.quantity
+      ) {
+        alert(
+          "Det finns bara " +
+            product.stock +
+            " kvar i lagret av " +
+            product.title
+        );
+        navigateToStartPage();
+        break;
+      }
 
-    await mockApi(order);
-    navigateToNextPage();
+      editProduct(product, product.stock - 1);
+      createOrder(order);
+      await mockApi(order);
+      navigateToNextPage();
+    }
   };
 
   async function mockApi(order: Order) {
     console.log(order);
-    console.log(cart)
+    console.log(cart);
     await timeOut();
     return true;
   }
@@ -140,63 +167,84 @@ export default function VerticalLinearStepper() {
   };
 
   return (
-    <div className={classes.root}>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((label, index) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-            <StepContent>
-              {getStepContent(index)}
-              <div className={classes.actionsContainer}>
-                <div>
+    <div>
+      {loggedIn ? (
+        <div className={classes.root}>
+          <Stepper activeStep={activeStep} orientation="vertical">
+            {steps.map((label, index) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+                <StepContent>
+                  {getStepContent(index)}
+                  <div className={classes.actionsContainer}>
+                    <div>
+                      <Button
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                        className={classes.button}>
+                        Tillbaka
+                      </Button>
+                      <Button
+                        disabled={hasErrorInForm}
+                        variant="contained"
+                        color="primary"
+                        onClick={handleNext}
+                        className={classes.button}>
+                        Gå vidare
+                      </Button>
+                    </div>
+                  </div>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper square elevation={0} className={classes.resetContainer}>
+              <Orderinfo />
+              <div className={classes.buttonContainer}>
+                <Button
+                  variant="contained"
+                  onClick={handleReset}
+                  className={classes.button}
+                  color="primary">
+                  Ändra dina uppgifter
+                </Button>
+                {disabled ? (
+                  <CircularProgress className={classes.circularProgress} />
+                ) : (
                   <Button
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
+                    onClick={completeBooking}
                     className={classes.button}
-                  >
-                    Tillbaka
-                  </Button>
-                  <Button
-                    disabled={hasErrorInForm}
-                    variant="contained"
                     color="primary"
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    Gå vidare
+                    variant="contained">
+                    Bekräfta beställning
                   </Button>
-                </div>
+                )}
               </div>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Orderinfo />
-          <div className={classes.buttonContainer}>
+            </Paper>
+          )}
+        </div>
+      ) : (
+        <div>
+          <h3>Login or Register an account to shop in this shop</h3>
+          <Link to="/register">
             <Button
-              variant="contained"
-              onClick={handleReset}
               className={classes.button}
               color="primary"
-            >
-              Ändra dina uppgifter
+              variant="contained">
+              Register
             </Button>
-            {disabled ? (
-                <CircularProgress className={classes.circularProgress} />
-            ) : (
-              <Button
-                onClick={completeBooking}
-                className={classes.button}
-                color="primary"
-                variant="contained"
-              >
-                Bekräfta beställning
-              </Button>
-            )}
-          </div>
-        </Paper>
+          </Link>
+
+          <Link to="/login">
+            <Button
+              className={classes.button}
+              color="primary"
+              variant="contained">
+              Log in
+            </Button>
+          </Link>
+        </div>
       )}
     </div>
   );
