@@ -1,5 +1,6 @@
 import { Component, createContext } from "react";
 import { Product } from "./ProductContext";
+import { Customer } from "./UserContext";
 
 export interface Order {
   id: number;
@@ -9,17 +10,6 @@ export interface Order {
   paymentType: string;
   totalPrice: number;
 }
-
-export interface Customer {
-  address: string;
-  city: string;
-  firstName: string;
-  lastName: string;
-  mobileNumber: string;
-  postalCode: string;
-  email: string;
-}
-
 export interface Payment {
   paymentType: string;
 }
@@ -69,12 +59,15 @@ export const CartContext = createContext<ContextValue>({
   removeAllFromCart: () => {},
   emptyCart: () => {},
   customer: {
+    username: "",
+    password: "",
+    role: "",
     address: "",
     city: "",
     firstName: "",
     lastName: "",
-    mobileNumber: "",
-    postalCode: "",
+    phoneNr: "",
+    zipCode: "",
     email: "",
   },
   createCustomer: () => {},
@@ -105,12 +98,15 @@ class CartProvider extends Component<{}, State> {
   state: State = {
     cart: [],
     customer: {
+      username: "",
+      password: "",
+      role: "",
       address: "",
       city: "",
       firstName: "",
       lastName: "",
-      mobileNumber: "",
-      postalCode: "",
+      phoneNr: "",
+      zipCode: "",
       email: "",
     },
     orderPrice: 0,
@@ -172,12 +168,15 @@ class CartProvider extends Component<{}, State> {
     this.setState({
       cart: [],
       customer: {
+        username: "",
+        password: "",
+        role: "",
         address: "",
         city: "",
         firstName: "",
         lastName: "",
-        mobileNumber: "",
-        postalCode: "",
+        phoneNr: "",
+        zipCode: "",
         email: "",
       },
       orderPrice: 0,
@@ -279,8 +278,7 @@ class CartProvider extends Component<{}, State> {
           getPayment: this.getPayment,
           getCardDetails: this.getCardDetails,
           getInvoiceDetails: this.getInvoiceDetails,
-        }}
-      >
+        }}>
         {this.props.children}
       </CartContext.Provider>
     );

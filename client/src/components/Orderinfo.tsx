@@ -16,9 +16,9 @@ const Orderinfo = () => {
           {customer.firstName}&nbsp;{customer.lastName}
         </p>
         <p>{customer.address}</p>
-        <p>{customer.postalCode}</p>
+        <p>{customer.zipCode}</p>
         <p>{customer.city}</p>
-        <p>{customer.mobileNumber}</p>
+        <p>{customer.phoneNr}</p>
         <p>{customer.email}</p>
       </div>
 

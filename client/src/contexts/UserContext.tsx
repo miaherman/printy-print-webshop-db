@@ -6,6 +6,16 @@ export interface User {
   password: string;
 }
 
+export interface Customer extends User{
+  firstName: string;
+  lastName: string;
+  address: string;
+  zipCode: string;
+  city: string;
+  email: string;
+  phoneNr: string;
+}
+
 interface State {}
 
 interface ContextValue extends State {

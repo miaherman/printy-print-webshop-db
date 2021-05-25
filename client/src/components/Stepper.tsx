@@ -57,7 +57,7 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { cart, orderPrice, delivery } = useContext(
+  const { customer, cart, orderPrice, delivery } = useContext(
     CartContext
   );
 
@@ -79,6 +79,7 @@ export default function VerticalLinearStepper() {
     setDisabled(true);
 
     const order: Order = {
+      customer: customer,
       shipping: delivery.deliveryType,
       price: orderPrice + delivery.deliveryPrice,
       products: cart,

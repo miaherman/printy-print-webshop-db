@@ -10,11 +10,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     margin: theme.spacing(4, 0, 2),
-  }
+  },
 }));
 
 function Admin() {
-
   const classes = useStyles();
 
   return (
@@ -24,14 +23,12 @@ function Admin() {
       <Typography variant="h6" className={classes.title}>
         Produkter
       </Typography>
-      <ProductTable/>
+      <ProductTable />
 
       <Typography variant="h6" className={classes.title}>
         Beställningar
       </Typography>
-      <OrderTable/>
-
-
+      <OrderTable />
     </main>
   );
 }

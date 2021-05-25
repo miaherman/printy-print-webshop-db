@@ -17,7 +17,7 @@ interface Props {
 
 function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   const { customer, getPayment, payment, cardDetails, invoice, getInvoiceDetails, getCardDetails } = useContext(CartContext);
-  const [swishNumber, setSwishNumber] = useState(customer.mobileNumber);
+  const [swishNumber, setSwishNumber] = useState(customer.phoneNr);
 
   const [swishError, setSwishError] = useState("");
 
@@ -34,7 +34,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   useEffect(() => {
     if (payment.paymentType === "Swish") {
       const hasError = Boolean(swishError);
-      const hasMissingInfo = !customer.mobileNumber;
+      const hasMissingInfo = !customer.phoneNr;
       onErrorChange(hasError || hasMissingInfo);
     } else if (payment.paymentType === "Betalkort") {
       const hasError = Boolean(cardError || dateError || cvcError);
@@ -46,7 +46,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
       onErrorChange3(hasError || hasMissingInfo);
     }
   }, [
-    customer.mobileNumber,
+    customer.phoneNr,
     swishError,
     cardError,
     dateError,

@@ -50,9 +50,9 @@ function CustomerInfo({ onErrorChange }: Props) {
       !customer.firstName ||
       !customer.lastName ||
       !customer.address ||
-      !customer.postalCode ||
+      !customer.zipCode ||
       !customer.city ||
-      !customer.mobileNumber ||
+      !customer.phoneNr ||
       !customer.email;
     onErrorChange(hasError || hasMissingInfo);
   }, [
@@ -98,7 +98,7 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handlePostalCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, postalCode: e.target.value });
+    createCustomer({ ...customer, zipCode: e.target.value });
 
     if (!/^(s-|S-){0,1}[0-9]{3}\s?[0-9]{2}$/.test(e.target.value)) {
       setPostalCodeError("Var god ange 5 siffror");
@@ -118,7 +118,7 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handleMobileNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, mobileNumber: e.target.value });
+    createCustomer({ ...customer, phoneNr: e.target.value });
 
     if (!/^[0-9]+$/.test(e.target.value)) {
       setMobileNumberError("Var god ange endast siffror");
@@ -128,7 +128,7 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, email: e.target.value });
+    createCustomer({ ...customer, email: e.target.value, role: "customer", password: "password", username: "user" });
 
     if (
       !/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -196,7 +196,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           error={Boolean(addressError)}
         />
         <TextField
-          value={customer.postalCode}
+          value={customer.zipCode}
           onChange={handlePostalCodeChange}
           id="postal-code"
           label="Postnummer"
@@ -245,7 +245,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           error={Boolean(emailError)}
         />
         <TextField
-          value={customer.mobileNumber}
+          value={customer.phoneNr}
           onChange={handleMobileNumberChange}
           id="mobilenumber"
           label="Mobilnummer"

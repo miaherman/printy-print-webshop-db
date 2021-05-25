@@ -14,10 +14,12 @@ exports.getOrderById = async (req, res) => {
 
 //Skapar en order
 exports.createOrder = async (req, res) => {
-  console.log(req.body);
-  const { shipping, price, products } = req.body
+  
+  const { customer, shipping, price, products } = req.body
+  // console.log(req.body);
 
   const newOrder = new OrderModel({
+    customer,
     shipping,
     price,
     products,
@@ -26,7 +28,7 @@ exports.createOrder = async (req, res) => {
   if (newOrder) {
     console.log(newOrder);
     const doc = await OrderModel.create(newOrder);
-    console.log('hurra', doc);
+    // console.log('hurra', doc);
     return res.status(201).json(doc);
   } else {
     return res.status(404).json("FEL FEL FEL");

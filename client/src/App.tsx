@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import theme from "./Theme";
+import theme from "./theme";
 
 import { useLocation } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";

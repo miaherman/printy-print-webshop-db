@@ -1,11 +1,13 @@
 import { Component, createContext } from "react";
 import { Product } from "./ProductContext";
+import { Customer } from "./UserContext";
 
 
 export interface Order{
   shipping: string;
   price: number;
   products: Product[];
+  customer: Customer;
 }
 
 interface State {
