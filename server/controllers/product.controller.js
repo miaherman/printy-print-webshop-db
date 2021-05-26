@@ -21,7 +21,7 @@ exports.createProduct = async (req, res) => {
     price: req.body.price,
     image: req.body.image,
     path: req.body.path,
-    category: req.body.category,
+    categories: req.body.categories,
     stock: req.body.stock
   });
 
@@ -54,5 +54,21 @@ exports.deleteProduct = async (req, res) => {
     res.status(404).json("Product does not exist");
   }
 };
+
+
+exports.getCategories = async (req, res) => {
+  const docs = await ProductModel.find({})
+  console.log(docs)
+  let allCategories = [];
+  
+  docs.foreach(d => allCategories.push(...d.categories));
+
+  console.log(allCategories)
+  // remove duplicates
+  allCategories = new Set(allCategories).toArray();
+
+  res.status(200).json(allCategories);
+  // ['abstract', 'text']
+}
 
 

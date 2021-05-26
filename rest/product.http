@@ -1,3 +1,4 @@
+
 GET http://localhost:4000/api/product
 
 ###
@@ -16,7 +17,7 @@ Content-Type: application/json
     "price": 350,
     "image": "https://desenio.se/bilder/artiklar/zoom/14650_2.jpg?imgwidth=435&qt=Abstrakta%20former",
     "path": "yellow-cuts",
-    "category": "abstract",
+    "categories": "abstract",
     "stock": 10
 }
 ###
@@ -31,9 +32,14 @@ Content-Type: application/json
     "price": 0,
     "image": "",
     "path": "",
-    "category": "",
+    "categories": "",
     "stock": 0
 }
 
 ###
 DELETE http://localhost:4000/api/product/60a38cd48d627617d5ae19a7
+
+
+###
+
+GET http://localhost:4000/api/product/categories 

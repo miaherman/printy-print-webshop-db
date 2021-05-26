@@ -28,6 +28,7 @@ interface ContextValue extends State {
   registerUser: (customer: Customer) => void;
   logOutUser: () => void;
   checkIfUserIsLoggedIn: () => void;
+  adminCheck: () => boolean | undefined;
 }
 
 export const UserContext = createContext<ContextValue>({
@@ -37,6 +38,7 @@ export const UserContext = createContext<ContextValue>({
   createCustomer: () => {},
   logOutUser: () => {},
   checkIfUserIsLoggedIn: () => {},
+  adminCheck: () => true,
   customer: {
     password: "",
     role: "",
@@ -123,6 +125,17 @@ class UserProvider extends Component<RouteComponentProps, State> {
     });
   }
 
+  adminCheck = () => {
+    //this.checkIfUserIsLoggedIn();
+    
+    if (!this.state.customer.role || this.state.customer.role === "customer") {
+      return false
+    } else if (this.state.customer.role === "admin") {
+      return true
+    }
+    
+  }
+ 
   componentDidMount() {
     this.checkIfUserIsLoggedIn();
   }
@@ -138,6 +151,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
           registerUser: this.registerUser,
           logOutUser: this.logOutUser,
           checkIfUserIsLoggedIn: this.checkIfUserIsLoggedIn,
+          adminCheck: this.adminCheck
         }}
       >
         {this.props.children}

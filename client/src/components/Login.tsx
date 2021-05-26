@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Logi() {
+export default function Login() {
   const classes = useStyles();
   
   const [email, setEmail] = useState("")

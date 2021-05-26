@@ -58,7 +58,9 @@ function CustomerInfo({ onErrorChange }: Props) {
       !customer.city ||
       !customer.phoneNr ||
       !customer.email ||
-      !customer.password;
+      (!loggedIn && !customer.password);
+
+    console.log({ hasError, hasMissingInfo, customer })
     onErrorChange(hasError || hasMissingInfo);
   }, [
     firstNameError,
@@ -70,11 +72,14 @@ function CustomerInfo({ onErrorChange }: Props) {
     emailError,
     passwordError,
     customer,
-    onErrorChange
+    onErrorChange,
+    loggedIn
   ]);
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, firstName: e.target.value });
+    const updatedCustomer = { ...customer, firstName: e.target.value }
+    createCustomer(updatedCustomer);
+    console.log({ updatedCustomer });
 
     if (!/^[a-öA-Ö]+$/.test(e.target.value)) {
       setFirstNameError("Var god ange endast bokstäver");

@@ -6,23 +6,18 @@ exports.getAllDeliverys = async (req, res) => {
   res.status(200).json(docs);
 };
 
-// Hämtar en specifik produkt
-exports.getDeliveryById = async (req, res) => {
-  const docs = await DeliveryModel.find({});
-  res.status(200).json(docs);
-};
+// Hämtar en specifik leverans
+// exports.getDeliveryById = async (req, res) => {
+//   const docs = await DeliveryModel.find({});
+//   res.status(200).json(docs);
+// };
 
-//Skapar en produkt
+//Skapar en leverans
 exports.createDelivery = async (req, res) => {
   const newDelivery = new DeliveryModel({
-    // title: req.body.title,
-    // description: req.body.description,
-    // size: req.body.size,
-    // price: req.body.price,
-    // image: req.body.image,
-    // path: req.body.path,
-    // category: req.body.category,
-    // stock: req.body.stock
+    shippingMethod: req.body.shippingMethod,
+    date: req.body.date,
+    price: req.body.price,
   });
 
   if (newDelivery) {

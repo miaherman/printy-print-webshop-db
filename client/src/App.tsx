@@ -60,11 +60,12 @@ function App() {
                       </PageAnimation>
                     </Route>
 
-                    <Route exact path="/admin">
+
+                      <Route path="/admin">
                       <PageAnimation>
                         <Admin />
                       </PageAnimation>
-                    </Route>
+                      </Route>
 
                     <Route path="/products/:path">
                       <PageAnimation>
