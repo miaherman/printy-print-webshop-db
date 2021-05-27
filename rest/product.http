@@ -11,12 +11,12 @@ Content-Type: application/json
 
 {
     "title": "Yellow Cuts",
-    "description": "Grafisk illustration med vita former som bildar ett abstrakt mönster på en gul bakgrund.",
+    "description": "Graphic illustration with white shapes forming an abstract pattern on a yellow background. Give your home that feeling of a modern art museum with this abstract art print!",
     "size": "50 x 70 cm",
     "price": 350,
-    "image": "https://desenio.se/bilder/artiklar/zoom/14650_2.jpg?imgwidth=435&qt=Abstrakta%20former",
+    "image": "../images/yellow-cuts.jpg",
     "path": "yellow-cuts",
-    "categories": "abstract",
+    "categories": ["graphic", "abstract"], 
     "stock": 10
 }
 ###
@@ -32,7 +32,7 @@ Content-Type: application/json
     "image": "",
     "path": "",
     "categories": "",
-    "stock": 0
+    "stock": 10
 }
 
 ###
@@ -40,4 +40,4 @@ DELETE http://localhost:4000/api/product/60a38cd48d627617d5ae19a7
 
 
 ###
-GET http://localhost:4000/api/product/categories/
+GET http://localhost:4000/api/product/categories

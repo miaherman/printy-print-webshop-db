@@ -48,63 +48,91 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 300,
     width: "auto",
   },
+  button: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    textAlign: "center",
+  },
 }));
 
 function ProductGrid() {
   const classes = useStyles();
   const { addToCart } = useContext(CartContext);
-  const { products } = useContext(ProductContext);
+  const { products, categories } = useContext(ProductContext);
+
+  const getCategory = (specificCategory: string) => {
+    products.forEach((product) => {
+      if (product.categories.includes(specificCategory)) {
+        console.log(product.title);
+      }
+    });
+  };
+
+  const getAllProducts = () => {
+    console.log(products);
+  };
 
   return (
-    <Grid container justify="center" className={classes.gridContainer}>
-      {products.map((product) => (
-        <motion.div key={product.title} whileHover={{ scale: 1.05 }}>
-          <Grid item>
-            <Card className={classes.root}>
-              <Link
-                style={{ textDecoration: "none" }}
-                to={`/products/${product.path}`}
-              >
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image={product.image}
-                    title={product.title}
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="h2"
-                      className={classes.title}
-                    >
-                      {product.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      {product.price + " kr"}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Link>
-              <CardActions>
-                <Button
-                  onClick={() => addToCart(product)}
-                  size="small"
-                  color="primary"
-                  href=""
-                >
-                  Lägg till
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        </motion.div>
-      ))}
-    </Grid>
+    <div>
+      <div className={classes.button}>
+        <Button onClick={() => getAllProducts()}>All products</Button>
+        {categories.map((category) => (
+          <Button
+            onClick={() => getCategory(category)}
+            size="small"
+            color="primary"
+            href="">
+            {category}
+          </Button>
+        ))}
+      </div>
+      <Grid container justify="center" className={classes.gridContainer}>
+        {products.map((product) => (
+          <motion.div key={product.title} whileHover={{ scale: 1.05 }}>
+            <Grid item>
+              <Card className={classes.root}>
+                <Link
+                  style={{ textDecoration: "none" }}
+                  to={`/products/${product.path}`}>
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image={product.image}
+                      title={product.title}
+                    />
+                    <CardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="h2"
+                        className={classes.title}>
+                        {product.title}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p">
+                        {product.price + " kr"}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Link>
+                <CardActions>
+                  <Button
+                    onClick={() => addToCart(product)}
+                    size="small"
+                    color="primary"
+                    href="">
+                    Lägg till
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          </motion.div>
+        ))}
+      </Grid>
+    </div>
   );
 }
 
