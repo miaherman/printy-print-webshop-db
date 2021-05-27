@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     flexGrow: 1,
+    color: "white",
+    textDecoration: "none"
   },
 }));
 
@@ -32,7 +34,7 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <Link style={{ color: "inherit" }} to="/">
+          <Link className={classes.title} to="/">
             <IconButton
               edge="start"
               className="homeButton"
@@ -41,34 +43,31 @@ export default function ButtonAppBar() {
             >
               <HomeIcon />
             </IconButton>
-          </Link>
-          <Typography variant="h6" className={classes.title}>
+            <Button aria-label="" color="inherit" >
             PrintyPrint
-          </Typography>
+            </Button>
+          </Link>
 
           {loggedIn ? 
-          <Link style={{ color: "inherit" }} to="/">
-            <IconButton onClick={logOutUser} aria-label="" color="inherit">
+          <Link component={Button} to="/">
+            <Button onClick={logOutUser} aria-label="" color="inherit">
                 Logout
-            </IconButton>
+            </Button>
           </Link> : 
           <>
-          <Link style={{ color: "inherit" }} to="/register">
-            <IconButton aria-label="" color="inherit">
+          <Link component={Button} to="/register">
+          <Button aria-label="" color="inherit">
                 Register
-            </IconButton>
+          </Button>
           </Link>
-
-          <Link style={{ color: "inherit" }} to="/login">
-            <IconButton aria-label="" color="inherit">
+          <Link component={Button} to="/login">
+            <Button aria-label="" color="inherit">
                 Login
-            </IconButton>
+            </Button>
           </Link>
           </>}
-          
-
           <Link style={{ color: "inherit" }} to="/checkout">
-            <IconButton aria-label="" color="inherit">
+            <Button aria-label="" color="inherit">
               <Badge
                 badgeContent={cart.reduce(
                   (a: any, b: any) => +a + +b.quantity,
@@ -78,7 +77,7 @@ export default function ButtonAppBar() {
               >
                 <ShoppingCartIcon />
               </Badge>
-            </IconButton>
+            </Button>
           </Link>
         </Toolbar>
       </AppBar>

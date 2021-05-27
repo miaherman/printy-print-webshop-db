@@ -16,12 +16,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     marginLeft: '1rem',
     marginRight: '1rem',
+    fontFamily: [
+      'Monoton',
+      'cursive',
+    ].join(','),
+      
   },
   text: {
     textAlign: 'center',
     marginLeft: '1rem',
     marginRight: '1rem',
-  }
+  },
 }));
 
 const WelcomeScreen = () => {
@@ -29,11 +34,11 @@ const WelcomeScreen = () => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h1" component="h1" className={classes.title}>
-        Välkommen till PrintyPrint
+      <Typography variant="h2" component="h1" className={classes.title}>
+        PrintyPrint
       </Typography>
-      <Typography variant="h5" component="h5" className={classes.text}>
-      Exklusiva och handplockade prints från ledande konstexperter
+      <Typography variant="h6" className={classes.text}>
+      Exclusive and hand picked prints from leading art consultants
       </Typography>
     </div>
   );

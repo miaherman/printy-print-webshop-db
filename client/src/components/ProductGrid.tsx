@@ -124,7 +124,7 @@ function ProductGrid() {
                     size="small"
                     color="primary"
                     href="">
-                    Lägg till
+                    Add to cart
                   </Button>
                 </CardActions>
               </Card>
