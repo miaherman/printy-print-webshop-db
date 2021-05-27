@@ -62,9 +62,9 @@ function ProductGrid() {
   const { products, categories } = useContext(ProductContext);
 
   const getCategory = (specificCategory: string) => {
-    products.forEach((product) => {
+    products.forEach(product => {
       if (product.categories.includes(specificCategory)) {
-        console.log(product.title);
+        console.log(product.title)
       }
     });
   };
