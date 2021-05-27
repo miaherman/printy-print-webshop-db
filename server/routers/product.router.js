@@ -8,6 +8,9 @@ const secure = require("../middleware/secure");
 // Hämtar alla våra produkter
 router.get("/api/product", controller.getAllProducts);
 
+// Hämtar alla kategorier
+router.get("/api/product/categories", controller.getCategories);
+
 // Hämtar en specifik produkt
 router.get("/api/product/:id", controller.getProductById);
 
@@ -20,7 +23,5 @@ router.put("/api/product/:id", controller.updateProduct);
 // Tar bort en produkt
 router.delete("/api/product/:id", controller.deleteProduct);
 
-// Hämtar alla kategorier
-router.get("/api/product/categories", controller.getCategories);
 
 module.exports = router;

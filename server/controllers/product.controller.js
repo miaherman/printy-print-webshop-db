@@ -3,6 +3,7 @@ const ProductModel = require("../models/product.model");
 //Hämtar alla våra produkter
 exports.getAllProducts = async (req, res) => {
   const docs = await ProductModel.find({});
+
   res.status(200).json(docs);
 };
 
@@ -57,18 +58,21 @@ exports.deleteProduct = async (req, res) => {
 
 
 exports.getCategories = async (req, res) => {
-  const docs = await ProductModel.find({})
-  console.log(docs)
+  const docs = await ProductModel.find({});
+  console.log(docs);
   let allCategories = [];
   
-  docs.foreach(d => allCategories.push(...d.categories));
+  docs.forEach(d => allCategories.push(...d.categories));
 
-  console.log(allCategories)
+  console.log(allCategories);
   // remove duplicates
-  allCategories = new Set(allCategories).toArray();
+  allCategories = new Set(allCategories)
 
-  res.status(200).json(allCategories);
+  let allCategoriesArray = Array.from(allCategories)
+  console.log(allCategoriesArray)
+
+  res.status(200).json(allCategoriesArray);
   // ['abstract', 'text']
-}
+};
 
 

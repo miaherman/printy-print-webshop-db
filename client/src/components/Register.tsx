@@ -11,6 +11,8 @@ import CustomerInfo from './CustomerInfo';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
+    paddingTop: "3rem",
+    paddingBottom: "5rem",
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',

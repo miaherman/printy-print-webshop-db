@@ -11,10 +11,13 @@ import { UserContext } from "../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    //marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
+    overFlow: "hidden",
+    height: "100vh"
   },
   avatar: {
     margin: theme.spacing(1),

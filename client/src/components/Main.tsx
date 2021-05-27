@@ -5,7 +5,8 @@ import WelcomeScreen from './WelcomeScreen'
 
 const useStyles = makeStyles((theme: Theme) => ({
   main: {
-    margin: 0
+    margin: 0,
+    paddingBottom: "5rem"
   },
   title: {},
 }));

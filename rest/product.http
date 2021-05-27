@@ -1,4 +1,3 @@
-
 GET http://localhost:4000/api/product
 
 ###
@@ -41,5 +40,4 @@ DELETE http://localhost:4000/api/product/60a38cd48d627617d5ae19a7
 
 
 ###
-
-GET http://localhost:4000/api/product/categories 
+GET http://localhost:4000/api/product/categories/
