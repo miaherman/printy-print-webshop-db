@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
+import { OrderContext } from "../contexts/OrderContext";
 import { UserContext } from "../contexts/UserContext";
 
 const Orderinfo = () => {
-  const { cart, orderPrice, delivery, payment } = useContext(
+  const { cart, orderPrice, payment } = useContext(
     CartContext
   );
   const { customer } = useContext(UserContext)
+  const { delivery } = useContext(OrderContext)
 
   return (
     <div>
@@ -26,8 +28,8 @@ const Orderinfo = () => {
 
       <div>
         <h3>Shipping:</h3>
-        <p>{delivery.deliveryType}</p>
-        <p>Pris: {delivery.deliveryPrice} kr</p>
+        <p>{delivery.shippingMethod}</p>
+        <p>Pris: {delivery.price} kr</p>
       </div>
 
       <div>
@@ -44,7 +46,7 @@ const Orderinfo = () => {
         </div>
       ))}
       <p>
-        Total price (including shipping): {orderPrice + delivery.deliveryPrice}&nbsp;kr
+        Total price (including shipping): {orderPrice + delivery.price}&nbsp;kr
       </p>
     </div>
   );

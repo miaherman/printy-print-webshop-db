@@ -11,7 +11,7 @@ const customerSchema = new mongoose.Schema({
   city: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phoneNr: { type: String, required: true },
-  password: { type: String, required: true },
+  password: { type: String, select: false },
 });
 
 const customerModel = mongoose.model("customer", customerSchema);

@@ -93,7 +93,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
       // alert('du e så inloggad så')
       this.props.history.push("/");
     } else {
-      alert('fel lösen');
+      alert('Wrong password!');
     }
   };
 
@@ -105,7 +105,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
     this.createCustomer(customer)
     const register = await this.makeRequest("/api/user/register", "POST", customer);
 
-    alert('Ny användare registrerat');
+    alert('New registered user!');
     return register;
   };
 

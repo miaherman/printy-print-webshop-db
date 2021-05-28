@@ -62,7 +62,7 @@ class ProductProvider extends Component<{}, State> {
 
     const newBody = { ...editedProduct, stock: newStock }
 
-    await this.makeRequest(`/api/product/${editedProduct.title}`, "PUT", newBody);
+    await this.makeRequest(`/api/product/${editedProduct.path}`, "PUT", newBody);
     this.getProductsFromDb();
   };
 
