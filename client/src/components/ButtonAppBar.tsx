@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
-import HomeIcon from "@material-ui/icons/Home";
+//import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 // import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Badge, Theme } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
 import { UserContext } from "../contexts/UserContext";
 import { Link } from "react-router-dom";
+import icon from "../icon.png";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -19,11 +19,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   homeButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
+  flex: {
     flexGrow: 1,
+  },
+  text: {
     color: "white",
     textDecoration: "none"
   },
+  logo: {
+    width: "2rem"
+  }
 }));
 
 export default function ButtonAppBar() {
@@ -34,19 +39,11 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <Link className={classes.title} to="/">
-            <IconButton
-              edge="start"
-              className="homeButton"
-              color="inherit"
-              aria-label="menu"
-            >
-              <HomeIcon />
-            </IconButton>
-            <Button aria-label="" color="inherit" >
-            PrintyPrint
-            </Button>
-          </Link>
+          <Link className={classes.text} to="/">
+              <img className={classes.logo} src={icon} alt="icon"/>
+            </Link>
+            <div className={classes.flex} >
+            </div>
 
           {loggedIn ? 
           <Link component={Button} to="/">

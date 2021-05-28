@@ -4,7 +4,7 @@ require("express-async-errors");
 const productRouter = require("./routers/product.router");
 const orderRouter = require("./routers/order.router");
 const userRouter = require("./routers/user.router");
-//const deliveryRouter = require("./routers/delivery.router");
+const deliveryRouter = require("./routers/delivery.router");
 //const customerRouter = require("./routers/customer.router");
 const cookieSession = require("cookie-session");
 
@@ -26,7 +26,7 @@ app.use(
 app.use(productRouter);
 app.use(userRouter);
 app.use(orderRouter);
-//app.use(deliveryRouter);
+app.use(deliveryRouter);
 //app.use(customerRouter);
 
 app.use((err, req, res, next) => {

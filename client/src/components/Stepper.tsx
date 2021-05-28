@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       marginTop: theme.spacing(1),
       marginRight: theme.spacing(1),
+      textDecoration: "none"
     },
     actionsContainer: {
       marginBottom: theme.spacing(2),
@@ -45,14 +46,19 @@ const useStyles = makeStyles((theme: Theme) =>
     circularProgress: {
       marginTop: theme.spacing(2),
     },
+
+    orderForm: {
+      textAlign: "center"
+
+    }
   })
 );
 
 function getSteps() {
   return [
-    "Fyll i dina personuppgifter",
-    "Välj typ av leverans",
-    "Välj betalningssätt",
+    "Please enter your customer information",
+    "Choose shipping method",
+    "Choose payment method",
   ];
 }
 
@@ -182,7 +188,7 @@ export default function VerticalLinearStepper() {
                         disabled={activeStep === 0}
                         onClick={handleBack}
                         className={classes.button}>
-                        Tillbaka
+                        Back
                       </Button>
                       <Button
                         disabled={hasErrorInForm}
@@ -190,7 +196,7 @@ export default function VerticalLinearStepper() {
                         color="primary"
                         onClick={handleNext}
                         className={classes.button}>
-                        Gå vidare
+                        Next
                       </Button>
                     </div>
                   </div>
@@ -207,7 +213,7 @@ export default function VerticalLinearStepper() {
                   onClick={handleReset}
                   className={classes.button}
                   color="primary">
-                  Ändra dina uppgifter
+                  Change your information
                 </Button>
                 {disabled ? (
                   <CircularProgress className={classes.circularProgress} />
@@ -217,7 +223,7 @@ export default function VerticalLinearStepper() {
                     className={classes.button}
                     color="primary"
                     variant="contained">
-                    Bekräfta beställning
+                    Confirm order
                   </Button>
                 )}
               </div>
@@ -225,8 +231,8 @@ export default function VerticalLinearStepper() {
           )}
         </div>
       ) : (
-        <div>
-          <h3>Login or Register an account to shop in this shop</h3>
+        <div className={classes.orderForm}>
+          <h3>Login or Register an account to make an order</h3>
           <Link to="/register">
             <Button
               className={classes.button}

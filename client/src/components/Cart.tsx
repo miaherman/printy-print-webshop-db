@@ -34,9 +34,9 @@ function Cart() {
 
   return (
     <div style={{ width: "100%" }}>
-      <h2 style={{textAlign: 'center'}}>Din kundvagn</h2>
+      <h2 style={{textAlign: 'center'}}>Cart</h2>
       {cart.length === 0 ? (
-        <p style={{textAlign: 'center'}}>Inga varor</p>
+        <p style={{textAlign: 'center'}}>Your cart is empty</p>
       ) : (
         <div className={classes.flex}>
           {cart.map((product) => (
@@ -104,8 +104,8 @@ function Cart() {
       )}
 
       <div style={{textAlign: 'center'}}>
-        <h2>Totalt pris(ex frakt):</h2>
-        <h3>{orderPrice} kr</h3>
+        <h2>Total price(ex shipping):</h2>
+        <h3>{orderPrice} SEK</h3>
       </div>
     </div>
   );

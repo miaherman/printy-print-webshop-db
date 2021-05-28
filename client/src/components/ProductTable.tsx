@@ -42,6 +42,7 @@ export default function ProductTable() {
             <TableCell>Artwork</TableCell>
             <TableCell align="left">Title</TableCell>
             <TableCell align="left">Stock Quantity</TableCell>
+            <TableCell align="left"></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

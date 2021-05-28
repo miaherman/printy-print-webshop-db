@@ -32,10 +32,10 @@ const Orderconfirmation = () => {
 
   return (
     <div className={classes.root}>
-      <h2>Tack för din beställning!</h2>
-      <h3>Ordernummer: {orderId} </h3>
+      <h2>Thank you for your order!</h2>
+      <h3>Ordernumber: {orderId} </h3>
       <p>
-        En orderbekräftelse har skickats till din e-post med alla uppgifter.
+        An order confirmation has been sent to your email address.
       </p>
     </div>
   );

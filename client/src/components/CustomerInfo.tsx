@@ -82,7 +82,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     console.log({ updatedCustomer });
 
     if (!/^[a-öA-Ö]+$/.test(e.target.value)) {
-      setFirstNameError("Var god ange endast bokstäver");
+      setFirstNameError("Only letters allowed in this field");
     } else {
       setFirstNameError("");
     }
@@ -92,7 +92,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     createCustomer({ ...customer, lastName: e.target.value });
 
     if (!/^[a-öA-Ö]+$/.test(e.target.value)) {
-      setLastNameError("Var god ange endast bokstäver");
+      setLastNameError("Only letters allowed in this field");
     } else {
       setLastNameError("");
     }
@@ -102,7 +102,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     createCustomer({ ...customer, address: e.target.value });
 
     if (!/^[a-öA-Ö0-9" "]+$/.test(e.target.value)) {
-      setAddressError("Var god ange endast bokstäver och siffror");
+      setAddressError("Only numbers and letters allowed in this field");
     } else {
       setAddressError("");
     }
@@ -112,7 +112,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     createCustomer({ ...customer, zipCode: e.target.value });
 
     if (!/^(s-|S-){0,1}[0-9]{3}\s?[0-9]{2}$/.test(e.target.value)) {
-      setPostalCodeError("Var god ange 5 siffror");
+      setPostalCodeError("Enter five numbers");
     } else {
       setPostalCodeError("");
     }
@@ -122,7 +122,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     createCustomer({ ...customer, city: e.target.value });
 
     if (!/^[a-öA-Ö]+$/.test(e.target.value)) {
-      setCityError("Var god ange endast bokstäver");
+      setCityError("Only letters allowed in this field");
     } else {
       setCityError("");
     }
@@ -132,7 +132,7 @@ function CustomerInfo({ onErrorChange }: Props) {
     createCustomer({ ...customer, phoneNr: e.target.value });
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setMobileNumberError("Var god ange endast siffror");
+      setMobileNumberError("Only numbers allowed in this field");
     } else {
       setMobileNumberError("");
     }
@@ -146,7 +146,7 @@ function CustomerInfo({ onErrorChange }: Props) {
         e.target.value
       )
     ) {
-      setEmailError("Var god ange en korrekt e-postadress");
+      setEmailError("Please add a correct email-address");
     } else {
       setEmailError("");
     }
@@ -174,10 +174,10 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.firstName}
           onChange={handleFirstNameChange}
           id="firstname"
-          label="Förnamn"
+          label="Firstname"
           required
           style={{ margin: 8 }}
-          placeholder="Förnamn"
+          placeholder="Firstname"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -191,9 +191,9 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.lastName}
           onChange={handleLastNameChange}
           id="lastname"
-          label="Efternamn"
+          label="Lastname"
           style={{ margin: 8 }}
-          placeholder="Efternamn"
+          placeholder="Lastname"
           fullWidth
           required
           margin="normal"
@@ -209,9 +209,9 @@ function CustomerInfo({ onErrorChange }: Props) {
           onChange={handleAddressChange}
           id="address"
           required
-          label="Adress"
+          label="Address"
           style={{ margin: 8 }}
-          placeholder="Adress"
+          placeholder="Address"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -225,10 +225,10 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.zipCode}
           onChange={handlePostalCodeChange}
           id="postal-code"
-          label="Postnummer"
+          label="Zipcode"
           required
           style={{ margin: 8 }}
-          placeholder="Postnummer"
+          placeholder="Zipcode"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -241,10 +241,10 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.city}
           onChange={handleCityChange}
           id="city"
-          label="Stad"
+          label="City"
           required
           style={{ margin: 8 }}
-          placeholder="Stad"
+          placeholder="City"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -257,10 +257,10 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.email}
           onChange={handleEmailChange}
           id="email"
-          label="E-post"
+          label="Email"
           required
           style={{ margin: 8 }}
-          placeholder="E-postadress"
+          placeholder="Email"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -274,7 +274,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.phoneNr}
           onChange={handleMobileNumberChange}
           id="mobilenumber"
-          label="Mobilnummer"
+          label="Mobilenumber"
           required
           style={{ margin: 8 }}
           placeholder="07X XXXXXXX"

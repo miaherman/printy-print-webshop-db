@@ -2,6 +2,13 @@ GET http://localhost:4000/api/delivery/
 
 ###
 POST http://localhost:4000/api/delivery/
+Content-Type: application/json
+
+{
+    "shippingMethod": "Postnord",
+    "time": 168,
+    "price": 0
+}
 
 ###
 DELETE http://localhost:4000/api/delivery/

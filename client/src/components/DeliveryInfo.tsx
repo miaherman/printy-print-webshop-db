@@ -48,17 +48,17 @@ function DeliveryInfo() {
               <FormControlLabel
                 value="Express"
                 control={<Radio />}
-                label={"Express (24h, levereras " + formatted_express + ") + 100kr"}
+                label={"Express (24h, delivered " + formatted_express + ") + 100SEK"}
               />
               <FormControlLabel
                 value="Instabox"
                 control={<Radio />}
-                label={"Instabox (48h, levereras " + formatted_instaBox + ") + 50kr"}
+                label={"Instabox (48h, delivered " + formatted_instaBox + ") + 100SEK"}
               />
               <FormControlLabel
                 value="Postnord"
                 control={<Radio />}
-                label={"Postnord (ca 1 vecka, levereras " + formatted_postnord  + ") Fri frakt"}
+                label={"Postnord (aprox 1 week, delivered " + formatted_postnord  + ") Free shipping"}
               />
             </RadioGroup>
           </FormControl>

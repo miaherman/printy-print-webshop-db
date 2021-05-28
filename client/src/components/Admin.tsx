@@ -9,11 +9,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   admin: {
     margin: 0,
     paddingTop: theme.spacing(15),
-    height: '100vh',
-    overflow: "hidden",
+    justifyContent: "center",
+    marginBottom: "3rem", 
   },
   title: {
     margin: theme.spacing(4, 0, 2),
+    marginLeft: "1rem"
   },
   welcomeText: {
     textAlign: "center",
@@ -30,7 +31,7 @@ function Admin() {
     <main className={classes.admin}>
 
       {adminCheck() ? <div>
-        <h1>Hey admin</h1>
+        <h1 className={classes.title} >Hey admin!</h1>
 
         <Typography variant="h6" className={classes.title}>
           Products

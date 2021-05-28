@@ -1,4 +1,4 @@
-const DeliveryModel = require("../models/Delivery.model");
+const DeliveryModel = require("../models/delivery.model");
 
 //Hämtar alla våra produkter
 exports.getAllDeliverys = async (req, res) => {
@@ -16,7 +16,7 @@ exports.getAllDeliverys = async (req, res) => {
 exports.createDelivery = async (req, res) => {
   const newDelivery = new DeliveryModel({
     shippingMethod: req.body.shippingMethod,
-    date: req.body.date,
+    time: req.body.time,
     price: req.body.price,
   });
 
@@ -29,7 +29,7 @@ exports.createDelivery = async (req, res) => {
 };
 
 // Uppdaterar en produkt
-exports.updateDelivery = async (req, res) => {
+exports.addDelivery = async (req, res) => {
   const doc = await DeliveryModel.findOne({ _id: req.params.id });
 
   const updatedDelivery = new DeliveryModel(Object.assign(doc, req.body));

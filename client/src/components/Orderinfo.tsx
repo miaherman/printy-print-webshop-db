@@ -10,10 +10,10 @@ const Orderinfo = () => {
 
   return (
     <div>
-      <h1>Kontrollera din beställning </h1>
+      <h1>View your order: </h1>
 
       <div>
-        <h3>Kunduppgifter:</h3>
+        <h3>Customer information:</h3>
         <p>
           {customer.firstName}&nbsp;{customer.lastName}
         </p>
@@ -25,17 +25,17 @@ const Orderinfo = () => {
       </div>
 
       <div>
-        <h3>Leveransuppgifter:</h3>
+        <h3>Shipping:</h3>
         <p>{delivery.deliveryType}</p>
         <p>Pris: {delivery.deliveryPrice} kr</p>
       </div>
 
       <div>
-        <h3>Betalningsuppgifter:</h3>
+        <h3>Payment information:</h3>
         <p>{payment.paymentType}</p>
       </div>
 
-      <h3>Produkter:</h3>
+      <h3>Products:</h3>
       {cart.map((product) => (
         <div key={product.title}>
           <p>
@@ -44,7 +44,7 @@ const Orderinfo = () => {
         </div>
       ))}
       <p>
-        Totalt pris (inkl. frakt): {orderPrice + delivery.deliveryPrice}&nbsp;kr
+        Total price (including shipping): {orderPrice + delivery.deliveryPrice}&nbsp;kr
       </p>
     </div>
   );

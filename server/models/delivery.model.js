@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const deliverySchema = new mongoose.Schema({
   shippingMethod: { type: String, required: true },
-  date: { type: Date, required: true },
+  time: { type: Number, required: true },
   price: { type: Number, required: true },
 });
 
-const deliveryModel = mongoose.model("delivery", deliverySchema);
+const DeliveryModel = mongoose.model("delivery", deliverySchema);
 
-module.exports = deliveryModel;
+module.exports = DeliveryModel;

@@ -68,7 +68,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
     setSwishNumber(e.target.value);
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setSwishError("Var god ange endast siffror");
+      setSwishError("Only numbers allowed in this field");
     } else {
       setSwishError("");
     }
@@ -79,7 +79,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
 
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setCardError("Var god ange endast siffror");
+      setCardError("Only numbers allowed in this field");
     } else {
       setCardError("");
     }
@@ -89,7 +89,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
     getCardDetails({ ...cardDetails, cardDate: e.target.value })
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setDateError("Var god ange endast siffror");
+      setDateError("Only numbers allowed in this field");
     } else {
       setDateError("");
     }
@@ -99,7 +99,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
     getCardDetails({ ...cardDetails, cardCvc: e.target.value })
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setCvcError("Var god ange endast siffror");
+      setCvcError("Only numbers allowed in this field");
     } else {
       setCvcError("");
     }
@@ -109,7 +109,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
     getInvoiceDetails(e.target.value)
 
     if (!/^[0-9]+$/.test(e.target.value)) {
-      setInvoiceError("Var god ange endast siffror");
+      setInvoiceError("Only numbers allowed in this field");
     } else {
       setInvoiceError("");
     }
@@ -146,7 +146,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
               id="mobilenumber"
               value={swishNumber}
               onChange={handleSwishChange}
-              label="Mobilnummer"
+              label="Mobilenumber"
               required
               style={{ margin: 8 }}
               placeholder="07X XXXXXXX"
@@ -182,7 +182,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
             />
             <TextField
               id="frmCCExp"
-              label="Datum"
+              label="Date"
               value={cardDetails.cardDate}
               onChange={handleDateChange}
               autoComplete="cc-exp"
@@ -215,18 +215,18 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
               error={Boolean(cvcError)}
             />
           </form>
-        ) : payment.paymentType === "Faktura" ? (
+        ) : payment.paymentType === "Invoice" ? (
           <form autoComplete="on">
             <TextField
-              key="personnumber"
-              id="personalnumbers"
-              label="Personnummer"
+              key="personalnumber"
+              id="personalnumber"
+              label="Personal Number"
               value={invoice}
               onChange={handleInvoiceChange}
               required
               fullWidth
               style={{ margin: 8 }}
-              placeholder="ÅÅÅÅMMDDXXXX"
+              placeholder="YYYYMMDDXXXX"
               margin="normal"
               InputLabelProps={{
                 shrink: true,
