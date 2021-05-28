@@ -76,7 +76,7 @@ function ProductGrid() {
   return (
     <div>
       <div className={classes.button}>
-        <Button onClick={() => getAllProducts()}>All products</Button>
+        <Button color="primary"  size="small" onClick={() => getAllProducts()}>All products</Button>
         {categories.map((category) => (
           <Button
             onClick={() => getCategory(category)}
