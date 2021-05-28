@@ -6,8 +6,16 @@ let theme = createMuiTheme({
     primary: { 
       main: "#2F323A" },
     secondary: { 
-      main: "#B8C5D6" }
+      main: "#B8C5D6" },
   },
+  overrides: {
+    MuiButton: {
+      text: {
+        color: 'white',
+      },
+    },
+  },
+  
 });
 
 theme = responsiveFontSizes(theme);
