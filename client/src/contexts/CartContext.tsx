@@ -163,6 +163,9 @@ class CartProvider extends Component<{}, State> {
   };
 
   emptyCart = () => {
+
+    localStorage.removeItem('data')
+
     this.setState({
       cart: [],
       customer: {
@@ -211,9 +214,10 @@ class CartProvider extends Component<{}, State> {
       updatedCart[updatedItemIndex] = updatedItem;
     }
 
-    this.getOrderPrice(updatedCart);
-    this.setState({ cart: updatedCart });
-    console.log(updatedCart);
+    localStorage.setItem('data', JSON.stringify(updatedCart))
+
+    this.getOrderPrice(JSON.parse(localStorage.getItem('data') || '[]'));
+    this.setState({ cart: JSON.parse(localStorage.getItem('data') || '[]') });
   };
 
   removeProductFromCart = (product: Product) => {
@@ -233,8 +237,10 @@ class CartProvider extends Component<{}, State> {
       updatedCart[updatedItemIndex] = updatedItem;
     }
 
-    this.getOrderPrice(updatedCart);
-    this.setState({ cart: updatedCart });
+    localStorage.setItem('data', JSON.stringify(updatedCart))
+
+    this.getOrderPrice(JSON.parse(localStorage.getItem('data') || '[]'));
+    this.setState({ cart: JSON.parse(localStorage.getItem('data') || '[]') });
     console.log(updatedCart);
     console.log(updatedItemIndex);
   };
@@ -253,11 +259,17 @@ class CartProvider extends Component<{}, State> {
     updatedItem.quantity = 0;
     updatedCart.splice(updatedItemIndex, 1);
 
-    this.getOrderPrice(updatedCart);
-    this.setState({ cart: updatedCart });
+    localStorage.setItem('data', JSON.stringify(updatedCart))
+
+    this.getOrderPrice(JSON.parse(localStorage.getItem('data') || '[]'));
+    this.setState({ cart: JSON.parse(localStorage.getItem('data') || '[]') });
     console.log(updatedCart);
     console.log(updatedItemIndex);
   };
+
+  componentDidMount() {
+    this.setState({ cart: JSON.parse(localStorage.getItem('data') || '[]') });
+  }
 
   render() {
     return (

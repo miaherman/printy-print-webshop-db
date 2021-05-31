@@ -38,11 +38,11 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
       const hasError = Boolean(swishError);
       const hasMissingInfo = !customer.phoneNr;
       onErrorChange(hasError || hasMissingInfo);
-    } else if (payment.paymentType === "Betalkort") {
+    } else if (payment.paymentType === "Card") {
       const hasError = Boolean(cardError || dateError || cvcError);
       const hasMissingInfo = !cardDetails.cardNumber || !cardDetails.cardDate || !cardDetails.cardCvc;
       onErrorChange2(hasError || hasMissingInfo);
-    } else if (payment.paymentType === "Faktura") {
+    } else if (payment.paymentType === "Invoice") {
       const hasError = Boolean(invoiceError);
       const hasMissingInfo = !invoice;
       onErrorChange3(hasError || hasMissingInfo);
@@ -127,14 +127,14 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
         >
           <FormControlLabel value="Swish" control={<Radio />} label="Swish" />
           <FormControlLabel
-            value="Betalkort"
+            value="Card"
             control={<Radio />}
-            label="Betalkort"
+            label="Card"
           />
           <FormControlLabel
-            value="Faktura"
+            value="Invoice"
             control={<Radio />}
-            label="Faktura"
+            label="Invoice"
           />
         </RadioGroup>
       </FormControl>
@@ -146,7 +146,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
               id="mobilenumber"
               value={swishNumber}
               onChange={handleSwishChange}
-              label="Mobilenumber"
+              label="Mobile number"
               required
               style={{ margin: 8 }}
               placeholder="07X XXXXXXX"
@@ -160,11 +160,11 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
               error={Boolean(swishError)}
             />
           </form>
-        ) : payment.paymentType === "Betalkort" ? (
+        ) : payment.paymentType === "Card" ? (
           <form autoComplete="on">
             <TextField
               id="frmCCNum"
-              label="Kortnummer"
+              label="Card Number"
               value={cardDetails.cardNumber}
               onChange={handleCardChange}
               required
@@ -188,7 +188,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
               autoComplete="cc-exp"
               required
               style={{ margin: 8 }}
-              placeholder="MM/ÅÅ"
+              placeholder="MM/YY"
               margin="normal"
               InputLabelProps={{
                 shrink: true,

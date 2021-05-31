@@ -3,27 +3,48 @@ import { Product } from "./ProductContext";
 import { Customer } from "./UserContext";
 
 
-export interface Order{
+export interface Order {
+  _id: string;
   shipping: string;
   price: number;
   products: Product[];
   customer: Customer;
 }
 
+export type NewOrder = Omit<Order, '_id'>;
+
 interface State {
   products: Product[];
   orders: Order[];
+  order: Order;
 }
 
 interface ContextValue extends State {
   getOrdersFromDb: () => void;
   makeRequest: (url: string, method: string, body?: any) => void,
-  createOrder: (order: Order) => void;                                             
+  createOrder: (order: NewOrder) => void;                                             
 } 
 
 export const OrderContext = createContext<ContextValue>({
   products: [],
   orders: [],
+  order: {
+    _id: "",
+    shipping: "",
+    price: 0,
+    products: [],
+    customer: {
+      firstName: "",
+      lastName: "",
+      address: "",
+      zipCode: "",
+      city: "",
+      phoneNr: "",
+      email: "",
+      role: "",
+      password: ""
+    }
+  },
   makeRequest: () => {},
   getOrdersFromDb: () => {},
   createOrder: () => {}
@@ -32,7 +53,24 @@ export const OrderContext = createContext<ContextValue>({
 class OrderProvider extends Component<{}, State> {
   state: State = {
     products: [],
-    orders: []
+    orders: [],
+    order: {
+      _id: "",
+      shipping: "",
+      price: 0,
+      products: [],
+      customer: {
+        firstName: "",
+        lastName: "",
+        address: "",
+        zipCode: "",
+        city: "",
+        phoneNr: "",
+        email: "",
+        role: "",
+        password: ""
+      }
+    },
   };
 
   makeRequest = async (url: string, method: string, body?: any) => {
@@ -54,11 +92,13 @@ class OrderProvider extends Component<{}, State> {
     this.setState({ orders: orders });
   };
 
-  createOrder = async (order: Order) => {
+  createOrder = async (order: NewOrder) => {
     console.log(order)
-    const doc = await this.makeRequest("/api/order", "POST", order);
+    const doc = (await this.makeRequest("/api/order", "POST", order));
 
-    alert('Ny order skapad');
+    this.setState({ order: doc })
+
+    alert('New order registered');
     return doc;
   };
 

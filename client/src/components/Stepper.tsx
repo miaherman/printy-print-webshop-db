@@ -11,7 +11,7 @@ import DeliveryInfo from "./DeliveryInfo";
 import PaymentInfo from "./PaymentInfo";
 import Orderinfo from "./Orderinfo";
 import { CartContext } from "../contexts/CartContext";
-import { OrderContext, Order } from "../contexts/OrderContext";
+import { OrderContext, Order, NewOrder} from "../contexts/OrderContext";
 // import { Product } from "../contexts/ProductContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
@@ -66,7 +66,7 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { cart, orderPrice, delivery } = useContext(CartContext);
+  const { cart, emptyCart, orderPrice, delivery } = useContext(CartContext);
 
   const { loggedIn, customer } = useContext(UserContext);
 
@@ -94,7 +94,7 @@ export default function VerticalLinearStepper() {
 
     console.log(customer);
 
-    const order: Order = {
+    const order: NewOrder = {
       customer: customer,
       shipping: delivery.deliveryType,
       price: orderPrice + delivery.deliveryPrice,
@@ -108,9 +108,9 @@ export default function VerticalLinearStepper() {
         product.stock < product.quantity
       ) {
         alert(
-          "Det finns bara " +
+          "There's only " +
             product.stock +
-            " kvar i lagret av " +
+            " prints left in stock " +
             product.title
         );
         navigateToStartPage();
@@ -119,23 +119,24 @@ export default function VerticalLinearStepper() {
 
       editProduct(product, product.stock - 1);
       createOrder(order);
-      await mockApi(order);
+      // await mockApi(order);
+      emptyCart();
       navigateToNextPage();
     }
   };
 
-  async function mockApi(order: Order) {
-    console.log(order);
-    console.log(cart);
-    await timeOut();
-    return true;
-  }
+  // async function mockApi(order: Order) {
+  //   console.log(order);
+  //   console.log(cart);
+  //   await timeOut();
+  //   return true;
+  // }
 
-  async function timeOut() {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 2000);
-    });
-  }
+  // async function timeOut() {
+  //   return new Promise((resolve) => {
+  //     setTimeout(resolve, 2000);
+  //   });
+  // }
 
   const [activeStep, setActiveStep] = React.useState(0);
   const [hasErrorInForm, setHasErrorInForm] = React.useState(true);

@@ -174,7 +174,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.firstName}
           onChange={handleFirstNameChange}
           id="firstname"
-          label="Firstname"
+          label="First name"
           required
           style={{ margin: 8 }}
           placeholder="Firstname"
@@ -191,7 +191,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.lastName}
           onChange={handleLastNameChange}
           id="lastname"
-          label="Lastname"
+          label="Last name"
           style={{ margin: 8 }}
           placeholder="Lastname"
           fullWidth
@@ -225,7 +225,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.zipCode}
           onChange={handlePostalCodeChange}
           id="postal-code"
-          label="Zipcode"
+          label="Zip code"
           required
           style={{ margin: 8 }}
           placeholder="Zipcode"
@@ -274,7 +274,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           value={customer.phoneNr}
           onChange={handleMobileNumberChange}
           id="mobilenumber"
-          label="Mobilenumber"
+          label="Mobile number"
           required
           style={{ margin: 8 }}
           placeholder="07X XXXXXXX"

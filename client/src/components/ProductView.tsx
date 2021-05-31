@@ -95,7 +95,7 @@ function ProductView() {
           {product.size}
         </Typography>
         <Typography variant="h5" component="h5" className={classes.price}>
-          {product.price + " kr"}
+          {product.price + " SEK"}
         </Typography>
         <Button
           onClick={() => addToCart(product)}

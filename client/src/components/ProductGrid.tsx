@@ -140,7 +140,7 @@ function ProductGrid() {
                           color="textSecondary"
                           component="p"
                         >
-                          {product.price + " kr"}
+                          {product.price + " SEK"}
                         </Typography>
                       </CardContent>
                     </CardActionArea>

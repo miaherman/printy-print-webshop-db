@@ -105,7 +105,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
     this.createCustomer(customer)
     const register = await this.makeRequest("/api/user/register", "POST", customer);
 
-    alert('Ny användare registrerat');
+    alert('New user registered!');
     return register;
   };
 
