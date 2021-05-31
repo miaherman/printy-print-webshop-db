@@ -5,19 +5,21 @@ import {
     Radio,
     RadioGroup,
   } from "@material-ui/core";
-import { CartContext } from "../contexts/CartContext";
+// import { CartContext } from "../contexts/CartContext";
+import { OrderContext } from "../contexts/OrderContext";
 
 function DeliveryInfo() {
-    const { delivery, getDelivery } = useContext(CartContext);
+    // const { delivery, getDelivery } = useContext(CartContext);
+    const { deliveries, delivery, getDelivery } = useContext(OrderContext);
 
     const handleDelivery = (e: ChangeEvent<HTMLInputElement>) => {
 
       if (e.target.value === 'Express') {
-        getDelivery({ ...delivery, deliveryPrice: 100, deliveryType: e.target.value })
+        getDelivery({ ...delivery, price: deliveries[0].price, shippingMethod: deliveries[0].shippingMethod, time: deliveries[0].time })
       } else if (e.target.value === 'Instabox') {
-        getDelivery({ ...delivery, deliveryPrice: 50, deliveryType: e.target.value })
+        getDelivery({ ...delivery, price: deliveries[1].price, shippingMethod: deliveries[1].shippingMethod, time: deliveries[1].time })
       } else {
-        getDelivery({ ...delivery, deliveryPrice: 0, deliveryType: e.target.value })
+        getDelivery({ ...delivery, price: deliveries[2].price, shippingMethod: deliveries[2].shippingMethod, time: deliveries[2].time })
       }
     };
 
@@ -41,7 +43,7 @@ function DeliveryInfo() {
             <RadioGroup
               aria-label="delivery"
               name="delivery"
-              value={delivery.deliveryType}
+              value={delivery.shippingMethod}
               onChange={handleDelivery}
               row
             >

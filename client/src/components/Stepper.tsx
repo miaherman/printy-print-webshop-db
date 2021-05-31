@@ -66,13 +66,13 @@ export default function VerticalLinearStepper() {
   const [disabled, setDisabled] = useState(false);
 
   const classes = useStyles();
-  const { cart, emptyCart, orderPrice, delivery } = useContext(CartContext);
+  const { emptyCart, cart, orderPrice } = useContext(CartContext);
 
   const { loggedIn, customer } = useContext(UserContext);
 
   // createOrderId, payment, customer, cart,
 
-  const { createOrder } = useContext(OrderContext);
+  const { createOrder, delivery } = useContext(OrderContext);
   const { editProduct } = useContext(ProductContext);
 
   useEffect(() => {
@@ -96,8 +96,8 @@ export default function VerticalLinearStepper() {
 
     const order: NewOrder = {
       customer: customer,
-      shipping: delivery.deliveryType,
-      price: orderPrice + delivery.deliveryPrice,
+      shipping: delivery.shippingMethod,
+      price: orderPrice + delivery.price,
       products: cart,
     };
 
@@ -116,13 +116,12 @@ export default function VerticalLinearStepper() {
         navigateToStartPage();
         break;
       }
-
       editProduct(product, product.stock - 1);
+    }
       createOrder(order);
       // await mockApi(order);
       emptyCart();
       navigateToNextPage();
-    }
   };
 
   // async function mockApi(order: Order) {

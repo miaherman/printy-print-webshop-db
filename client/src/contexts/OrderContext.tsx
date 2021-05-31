@@ -10,6 +10,11 @@ export interface Order {
   products: Product[];
   customer: Customer;
 }
+export interface Delivery{
+  shippingMethod: string;
+  time: number;
+  price: number;
+}
 
 export type NewOrder = Omit<Order, '_id'>;
 
@@ -17,10 +22,14 @@ interface State {
   products: Product[];
   orders: Order[];
   order: Order;
+  deliveries: Delivery[];
+  delivery: Delivery
 }
 
 interface ContextValue extends State {
   getOrdersFromDb: () => void;
+  getDeliveryFromDb: () => void;
+  getDelivery: (delivery: Delivery) => void;
   makeRequest: (url: string, method: string, body?: any) => void,
   createOrder: (order: NewOrder) => void;                                             
 } 
@@ -43,11 +52,19 @@ export const OrderContext = createContext<ContextValue>({
       email: "",
       role: "",
       password: ""
-    }
+    },
+  },
+  deliveries: [],
+  delivery: {
+    shippingMethod: "Express",
+    time: 24,
+    price: 100
   },
   makeRequest: () => {},
   getOrdersFromDb: () => {},
-  createOrder: () => {}
+  createOrder: () => {},
+  getDeliveryFromDb: () => {},
+  getDelivery: () => {}
 });
 
 class OrderProvider extends Component<{}, State> {
@@ -71,6 +88,12 @@ class OrderProvider extends Component<{}, State> {
         password: ""
       }
     },
+    delivery: {
+      shippingMethod: "Express",
+      time: 24,
+      price: 100
+    },
+    deliveries: [],
   };
 
   makeRequest = async (url: string, method: string, body?: any) => {
@@ -91,6 +114,16 @@ class OrderProvider extends Component<{}, State> {
     let orders = await this.makeRequest("/api/order", "GET");
     this.setState({ orders: orders });
   };
+  
+  getDeliveryFromDb = async () => {
+    let deliveries = await this.makeRequest("/api/delivery", "GET");
+    this.setState({ deliveries: deliveries });
+    console.log(this.state.deliveries)
+  };
+
+  getDelivery = (delivery: Delivery) => {
+    this.setState({ delivery });
+  };
 
   createOrder = async (order: NewOrder) => {
     console.log(order)
@@ -102,9 +135,9 @@ class OrderProvider extends Component<{}, State> {
     return doc;
   };
 
-
   componentDidMount() {
     this.getOrdersFromDb();
+    this.getDeliveryFromDb();
   }
 
   render() {
@@ -114,7 +147,9 @@ class OrderProvider extends Component<{}, State> {
           ...this.state,
           makeRequest: this.makeRequest,
           getOrdersFromDb: this.getOrdersFromDb,
-          createOrder: this.createOrder
+          createOrder: this.createOrder,
+          getDeliveryFromDb: this.getDeliveryFromDb,
+          getDelivery: this.getDelivery
         }}
       >
         {this.props.children}
