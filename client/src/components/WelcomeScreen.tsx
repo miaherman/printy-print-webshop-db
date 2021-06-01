@@ -13,19 +13,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
   },
   title: {
-    textAlign: 'center',
-    marginLeft: '1rem',
-    marginRight: '1rem',
-    fontFamily: [
-      'Monoton',
-      'cursive',
-    ].join(','),
-      
+    textAlign: "center",
+    marginLeft: "1rem",
+    marginRight: "1rem",
+    fontFamily: ["Monoton", "cursive"].join(","),
   },
   text: {
-    textAlign: 'center',
-    marginLeft: '1rem',
-    marginRight: '1rem',
+    textAlign: "center",
+    marginLeft: "1rem",
+    marginRight: "1rem",
   },
 }));
 
@@ -38,7 +34,7 @@ const WelcomeScreen = () => {
         PrintyPrint
       </Typography>
       <Typography variant="h6" className={classes.text}>
-      Exclusive and hand picked prints from leading art consultants
+        Exclusive and hand picked prints from leading art consultants
       </Typography>
     </div>
   );

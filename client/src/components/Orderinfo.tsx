@@ -46,7 +46,7 @@ const Orderinfo = () => {
         </div>
       ))}
       <p>
-        Total price (including shipping): {orderPrice + delivery.price}&nbsp;kr
+        Total price (including shipping): {orderPrice + delivery.price}&nbsp;SEK
       </p>
     </div>
   );

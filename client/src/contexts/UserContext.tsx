@@ -6,7 +6,7 @@ export interface User {
   password: string;
 }
 
-export interface Customer extends User{
+export interface Customer extends User {
   firstName: string;
   lastName: string;
   address: string;
@@ -17,8 +17,8 @@ export interface Customer extends User{
 }
 
 interface State {
-  customer: Customer,
-  loggedIn: boolean
+  customer: Customer;
+  loggedIn: boolean;
 }
 
 interface ContextValue extends State {
@@ -28,7 +28,7 @@ interface ContextValue extends State {
   registerUser: (customer: Customer) => void;
   logOutUser: () => void;
   checkIfUserIsLoggedIn: () => void;
-  adminCheck: () => boolean | undefined;
+  adminCheck: () => boolean | undefined;
 }
 
 export const UserContext = createContext<ContextValue>({
@@ -50,7 +50,7 @@ export const UserContext = createContext<ContextValue>({
     zipCode: "",
     email: "",
   },
-  loggedIn: false
+  loggedIn: false,
 });
 
 class UserProvider extends Component<RouteComponentProps, State> {
@@ -66,7 +66,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
       zipCode: "",
       email: "",
     },
-    loggedIn: false
+    loggedIn: false,
   };
 
   makeRequest = async (url: string, method: string, body?: any) => {
@@ -93,7 +93,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
       // alert('du e så inloggad så')
       this.props.history.push("/");
     } else {
-      alert('Wrong password!');
+      alert("Wrong password!");
     }
   };
 
@@ -102,10 +102,14 @@ class UserProvider extends Component<RouteComponentProps, State> {
   };
 
   registerUser = async (customer: Customer) => {
-    this.createCustomer(customer)
-    const register = await this.makeRequest("/api/user/register", "POST", customer);
+    this.createCustomer(customer);
+    const register = await this.makeRequest(
+      "/api/user/register",
+      "POST",
+      customer
+    );
 
-    alert('New user registered!');
+    alert("New user registered!");
     // this.props.history.push("/login");
 
     return register;
@@ -129,15 +133,13 @@ class UserProvider extends Component<RouteComponentProps, State> {
   }
 
   adminCheck = () => {
-    
-    if (!this.state.customer.role || this.state.customer.role === "customer") {
-      return false
+    if (!this.state.customer.role || this.state.customer.role === "customer") {
+      return false;
     } else if (this.state.customer.role === "admin") {
-      return true
+      return true;
     }
-    
-  }
- 
+  };
+
   componentDidMount() {
     this.checkIfUserIsLoggedIn();
   }
@@ -153,7 +155,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
           registerUser: this.registerUser,
           logOutUser: this.logOutUser,
           checkIfUserIsLoggedIn: this.checkIfUserIsLoggedIn,
-          adminCheck: this.adminCheck
+          adminCheck: this.adminCheck,
         }}
       >
         {this.props.children}

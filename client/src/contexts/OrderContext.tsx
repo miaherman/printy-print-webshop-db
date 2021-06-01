@@ -5,7 +5,7 @@ import { Customer } from "./UserContext";
 
 export interface Order {
   _id: string;
-  shipping: string;
+  delivery: Delivery;
   price: number;
   products: Product[];
   customer: Customer;
@@ -39,7 +39,11 @@ export const OrderContext = createContext<ContextValue>({
   orders: [],
   order: {
     _id: "",
-    shipping: "",
+    delivery: {
+      shippingMethod: "",
+      time: 0,
+      price: 0,
+    },
     price: 0,
     products: [],
     customer: {
@@ -73,7 +77,11 @@ class OrderProvider extends Component<{}, State> {
     orders: [],
     order: {
       _id: "",
-      shipping: "",
+      delivery: {
+        shippingMethod: "",
+        time: 0,
+        price: 0,
+      },
       price: 0,
       products: [],
       customer: {

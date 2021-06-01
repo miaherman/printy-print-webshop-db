@@ -47,7 +47,7 @@ export default function OrderTable() {
                 
               </TableCell>
 
-              <TableCell align="left">{order.shipping}</TableCell>
+              <TableCell align="left">{order.delivery.shippingMethod}</TableCell>
               <TableCell align="left">{order.price}</TableCell>
             </TableRow>
           ))}

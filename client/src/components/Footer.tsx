@@ -28,9 +28,6 @@ const Footer = () => {
             <Link to="/aboutus">
                 <Button>About us</Button>
           </Link>
-            <Link to="/monkies">
-                <Button>About monkies</Button>
-          </Link>
         </div>
     );
 };

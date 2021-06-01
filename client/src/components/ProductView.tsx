@@ -7,7 +7,7 @@ import { ProductContext } from "../contexts/ProductContext";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     marginTop: theme.spacing(15),
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(6),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",

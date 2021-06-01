@@ -2,7 +2,6 @@ const express = require("express");
 const ProductModel = require("../models/product.model");
 const router = express.Router();
 const controller = require("../controllers/product.controller");
-const secure = require("../middleware/secure");
 
 
 // Hämtar alla våra produkter

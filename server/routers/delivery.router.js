@@ -9,7 +9,5 @@ router.get("/api/delivery", controller.getAllDeliverys);
 //Skapar en leverans
 router.post("/api/delivery", controller.createDelivery);
 
-//Tar bort en leverans
-router.delete("/api/delivery", controller.deleteDelivery);
 
 module.exports = router;

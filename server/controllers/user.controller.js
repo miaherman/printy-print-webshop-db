@@ -1,9 +1,9 @@
-const CustomerModel = require("../models/customer.model");
+const UserModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 
 //Hämtar alla våra användare
 exports.getAllUsers = async (req, res) => {
-  const docs = await CustomerModel.find({});
+  const docs = await UserModel.find({});
   res.status(200).json(docs);
 };
 
@@ -22,14 +22,14 @@ exports.createUser = async (req, res) => {
   } = req.body;
   console.log(req.body);
 
-  const existinguser = await CustomerModel.findOne({ email: req.body.email });
+  const existinguser = await UserModel.findOne({ email: req.body.email });
 
   //Kollar om användaren existerar
   if (existinguser) {
     return res.status(400).json("Username exists");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = new CustomerModel({
+  const newUser = new UserModel({
     role,
     firstName,
     lastName,
@@ -43,13 +43,13 @@ exports.createUser = async (req, res) => {
   console.log(newUser);
 
   //Lägger till användaren i databasen
-  const doc = await CustomerModel.create(newUser);
+  const doc = await UserModel.create(newUser);
   res.status(201).json(doc);
 };
 
 //Loggar in användaren
 exports.loginUser = async (req, res) => {
-  const user = await CustomerModel.findOne({ email: req.body.email }).select(
+  const user = await UserModel.findOne({ email: req.body.email }).select(
     "+password"
   );
 

@@ -38,7 +38,6 @@ function CustomerInfo({ onErrorChange }: Props) {
   const [passwordError, setPasswordError] = useState("");
 
   useEffect(() => {
-
     const hasError = Boolean(
       firstNameError ||
         lastNameError ||
@@ -59,7 +58,7 @@ function CustomerInfo({ onErrorChange }: Props) {
       !customer.email ||
       (!loggedIn && !customer.password);
 
-      onErrorChange(hasError || hasMissingInfo);
+    onErrorChange(hasError || hasMissingInfo);
   }, [
     firstNameError,
     lastNameError,
@@ -71,11 +70,11 @@ function CustomerInfo({ onErrorChange }: Props) {
     passwordError,
     customer,
     onErrorChange,
-    loggedIn
+    loggedIn,
   ]);
 
   const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const updatedCustomer = { ...customer, firstName: e.target.value }
+    const updatedCustomer = { ...customer, firstName: e.target.value };
     createCustomer(updatedCustomer);
     console.log({ updatedCustomer });
 
@@ -137,7 +136,12 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, email: e.target.value, role: "customer", password: "password"});
+    createCustomer({
+      ...customer,
+      email: e.target.value,
+      role: "customer",
+      password: "password",
+    });
 
     if (
       !/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -151,18 +155,18 @@ function CustomerInfo({ onErrorChange }: Props) {
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    createCustomer({ ...customer, password: e.target.value, role: "customer"});
+    createCustomer({ ...customer, password: e.target.value, role: "customer" });
 
-    // if (
-    //   !/^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    //     e.target.value
-    //   )
-    // ) {
-    //   setPasswordError("Var god ange en korrekt password");
-    // } else {
-    //   setPasswordError("");
-    // }
-    setPasswordError("");
+    // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+    if (
+      !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(e.target.value)
+    ) {
+      setPasswordError(
+        "Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
+      );
+    } else {
+      setPasswordError("");
+    }
   };
 
   return (
@@ -175,7 +179,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           label="First name"
           required
           style={{ margin: 8 }}
-          placeholder="Firstname"
+          placeholder="First name"
           fullWidth
           margin="normal"
           InputLabelProps={{
@@ -191,7 +195,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           id="lastname"
           label="Last name"
           style={{ margin: 8 }}
-          placeholder="Lastname"
+          placeholder="Last name"
           fullWidth
           required
           margin="normal"
@@ -226,7 +230,7 @@ function CustomerInfo({ onErrorChange }: Props) {
           label="Zip code"
           required
           style={{ margin: 8 }}
-          placeholder="Zipcode"
+          placeholder="Zip code"
           margin="normal"
           InputLabelProps={{
             shrink: true,
@@ -286,26 +290,25 @@ function CustomerInfo({ onErrorChange }: Props) {
           error={Boolean(mobileNumberError)}
         />
 
-          {loggedIn ? null : 
+        {loggedIn ? null : (
           <TextField
-          value={customer.password}
-          onChange={handlePasswordChange}
-          id="password"
-          label="Password"
-          type="password"
-          required
-          style={{ margin: 8 }}
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-          helperText={passwordError}
-          error={Boolean(passwordError)}
-        />}
-        
-
+            value={customer.password}
+            onChange={handlePasswordChange}
+            id="password"
+            label="Password"
+            type="password"
+            required
+            style={{ margin: 8 }}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            variant="outlined"
+            helperText={passwordError}
+            error={Boolean(passwordError)}
+          />
+        )}
       </form>
     </div>
   );

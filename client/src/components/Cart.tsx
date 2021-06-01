@@ -63,14 +63,14 @@ function Cart() {
                       color="textSecondary"
                       component="p"
                     >
-                      {"Pris: " + product.price}
+                      {"Price: " + product.price}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      {"Antal: " + product.quantity}
+                      {"Quantity " + product.quantity}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

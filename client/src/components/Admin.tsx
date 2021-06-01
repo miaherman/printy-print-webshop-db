@@ -44,7 +44,7 @@ function Admin() {
         <OrderTable />
       </div> :
       
-        <Typography variant="h4" className={classes.welcomeText}>You do not have access to view this.</Typography>
+        <Typography variant="h4" className={classes.welcomeText}>You do not have permission to view this page.</Typography>
       }
     </main>
   );

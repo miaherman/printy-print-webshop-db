@@ -1,6 +1,5 @@
 import { makeStyles, Theme } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
-import { OrderContext } from "../contexts/OrderContext";
+import React, { useEffect } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -15,10 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Orderconfirmation = () => {
+const AboutUs = () => {
   const classes = useStyles();
-
-  const { order } = useContext(OrderContext);
 
   useEffect(() => {
 
@@ -28,13 +25,10 @@ const Orderconfirmation = () => {
 
   return (
     <div className={classes.root}>
-      <h2>Thank you for your order!</h2>
-      <h3>Order number: {order._id}</h3>
-      <p>
-        An order confirmation has been sent to your email address.
-      </p>
+      <p>Do you love art, but have no money? Then this is not the site for you. We take pride in the carefully selected art prints we share with the world. Art should be expensive and for the selected few. Art should be making you feel sophisticated by spendig a lot of money on it. Money equals power, make it rain b.</p>
+      <p></p>
     </div>
   );
 };
 
-export default Orderconfirmation;
+export default AboutUs;

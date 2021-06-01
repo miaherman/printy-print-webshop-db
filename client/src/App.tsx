@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "./theme";
-
 import { useLocation } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
 import Checkout from "./components/Checkout";
@@ -20,6 +19,7 @@ import ProductProvider from "./contexts/ProductContext";
 import UserProvider from "./contexts/UserContext";
 import OrderProvider from "./contexts/OrderContext";
 import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUs";
 
 const useStyles = makeStyles((theme) => ({
   App: {
@@ -84,7 +84,14 @@ function App() {
                         <Orderconfirmation />
                       </PageAnimation>
                     </Route>
+
+                    <Route path="/aboutus">
+                      <PageAnimation>
+                        <AboutUs />
+                      </PageAnimation>
+                    </Route>
                   </Switch>
+
                 </AnimatePresence>
                 <Footer />
               </CartProvider>

@@ -1,6 +1,6 @@
 const OrderModel = require("../models/order.model");
 
-//Hämtar alla våra produkter
+//Hämtar alla våra ordrar
 exports.getAllOrders = async (req, res) => {
   const docs = await OrderModel.find({});
   res.status(200).json(docs);
@@ -15,11 +15,11 @@ exports.getOrderById = async (req, res) => {
 //Skapar en order
 exports.createOrder = async (req, res) => {
   
-  const { customer, shipping, price, products } = req.body
+  const { customer, delivery, price, products } = req.body
 
   const newOrder = new OrderModel({
     customer,
-    shipping,
+    delivery,
     price,
     products,
   });
@@ -33,23 +33,3 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-// Uppdaterar en order 
-/* exports.updateOrder = async (req, res) => {
-  const doc = await OrderModel.findOne({ _id: req.params.id });
-
-  const updatedOrder = new OrderModel(Object.assign(doc, req.body));
-  await updatedOrder.save();
-  res.json("Order updated");
-}; */
-
-//Tar bort en order
-/* exports.deleteOrder = async (req, res) => {
-  const doc = await OrderModel.findOne({ _id: req.params.id });
-
-  if (doc) {
-    await doc.remove();
-    res.status(201).json(doc);
-  } else {
-    res.status(404).json("Order does not exist");
-  }
-}; */
