@@ -2,7 +2,6 @@ import React, { ChangeEvent, useContext, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles, Theme } from "@material-ui/core";
 import { useState } from "react";
-// import { CartContext } from "../contexts/CartContext";
 import { UserContext } from "../contexts/UserContext";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -60,8 +59,7 @@ function CustomerInfo({ onErrorChange }: Props) {
       !customer.email ||
       (!loggedIn && !customer.password);
 
-    console.log({ hasError, hasMissingInfo, customer })
-    onErrorChange(hasError || hasMissingInfo);
+      onErrorChange(hasError || hasMissingInfo);
   }, [
     firstNameError,
     lastNameError,

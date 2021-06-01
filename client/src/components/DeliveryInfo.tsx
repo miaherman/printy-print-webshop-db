@@ -5,11 +5,9 @@ import {
     Radio,
     RadioGroup,
   } from "@material-ui/core";
-// import { CartContext } from "../contexts/CartContext";
 import { OrderContext } from "../contexts/OrderContext";
 
 function DeliveryInfo() {
-    // const { delivery, getDelivery } = useContext(CartContext);
     const { deliveries, delivery, getDelivery } = useContext(OrderContext);
 
     const handleDelivery = (e: ChangeEvent<HTMLInputElement>) => {

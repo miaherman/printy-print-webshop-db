@@ -2,7 +2,6 @@ import Grid from "@material-ui/core/Grid";
 import React, { useContext, useState, useEffect } from "react";
 import { Product } from "../contexts/ProductContext";
 
-
 import {
   Card,
   CardActionArea,
@@ -16,7 +15,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import { CartContext } from "../contexts/CartContext";
-// import { products } from "../products";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ProductContext } from "../contexts/ProductContext";
@@ -102,6 +100,7 @@ function ProductGrid() {
         <Button color="primary"  size="small" onClick={() => getAllProducts()}>All products</Button>
         {categories.map((category) => (
           <Button
+            key={category}
             onClick={() => getCategory(category)}
             size="small"
             color="primary"

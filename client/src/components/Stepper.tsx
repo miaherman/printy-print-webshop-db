@@ -11,8 +11,7 @@ import DeliveryInfo from "./DeliveryInfo";
 import PaymentInfo from "./PaymentInfo";
 import Orderinfo from "./Orderinfo";
 import { CartContext } from "../contexts/CartContext";
-import { OrderContext, Order, NewOrder} from "../contexts/OrderContext";
-// import { Product } from "../contexts/ProductContext";
+import { OrderContext, NewOrder} from "../contexts/OrderContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
 import { UserContext } from "../contexts/UserContext";
@@ -70,8 +69,6 @@ export default function VerticalLinearStepper() {
 
   const { loggedIn, customer } = useContext(UserContext);
 
-  // createOrderId, payment, customer, cart,
-
   const { createOrder, delivery } = useContext(OrderContext);
   const { editProduct } = useContext(ProductContext);
 
@@ -110,7 +107,7 @@ export default function VerticalLinearStepper() {
         alert(
           "There's only " +
             product.stock +
-            " prints left in stock " +
+            " prints left in stock of " +
             product.title
         );
         navigateToStartPage();
@@ -119,26 +116,12 @@ export default function VerticalLinearStepper() {
       editProduct(product, product.stock - 1);
     }
       createOrder(order);
-      // await mockApi(order);
       emptyCart();
       navigateToNextPage();
   };
 
-  // async function mockApi(order: Order) {
-  //   console.log(order);
-  //   console.log(cart);
-  //   await timeOut();
-  //   return true;
-  // }
-
-  // async function timeOut() {
-  //   return new Promise((resolve) => {
-  //     setTimeout(resolve, 2000);
-  //   });
-  // }
-
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [hasErrorInForm, setHasErrorInForm] = React.useState(true);
+  const [activeStep, setActiveStep] = useState(0);
+  const [hasErrorInForm, setHasErrorInForm] = useState(true);
   const steps = getSteps();
 
   function getStepContent(step: number) {

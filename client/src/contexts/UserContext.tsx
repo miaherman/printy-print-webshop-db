@@ -105,7 +105,9 @@ class UserProvider extends Component<RouteComponentProps, State> {
     this.createCustomer(customer)
     const register = await this.makeRequest("/api/user/register", "POST", customer);
 
-    alert('New registered user!');
+    alert('New user registered!');
+    // this.props.history.push("/login");
+
     return register;
   };
 
@@ -113,6 +115,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
     const logout = await this.makeRequest("/api/user/logout", "DELETE");
     this.checkIfUserIsLoggedIn();
     alert(logout);
+    // this.props.history.push("/");
     return logout;
   };
 
@@ -126,7 +129,6 @@ class UserProvider extends Component<RouteComponentProps, State> {
   }
 
   adminCheck = () => {
-    //this.checkIfUserIsLoggedIn();
     
     if (!this.state.customer.role || this.state.customer.role === "customer") {
       return false

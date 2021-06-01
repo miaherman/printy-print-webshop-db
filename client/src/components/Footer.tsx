@@ -22,14 +22,14 @@ const Footer = () => {
 
     return (
         <div className={classes.footer}>
-            <Link component={Button} to="/admin">
-                Admin
+            <Link to="/admin">
+                <Button>Admin</Button>
           </Link>
-            <Link component={Button} to="/aboutus">
-                About us
+            <Link to="/aboutus">
+                <Button>About us</Button>
           </Link>
-            <Link component={Button} to="/monkies">
-                About monkies
+            <Link to="/monkies">
+                <Button>About monkies</Button>
           </Link>
         </div>
     );

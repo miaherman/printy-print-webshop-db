@@ -3,9 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-//import HomeIcon from "@material-ui/icons/Home";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-// import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Badge, Theme } from "@material-ui/core";
 import { CartContext } from "../contexts/CartContext";
 import { UserContext } from "../contexts/UserContext";
@@ -46,24 +44,24 @@ export default function ButtonAppBar() {
             </div>
 
           {loggedIn ? 
-          <Link component={Button} to="/">
+          <Link className={classes.text} to="/">
             <Button onClick={logOutUser} aria-label="" color="inherit">
                 Logout
             </Button>
           </Link> : 
           <>
-          <Link component={Button} to="/register">
+          <Link className={classes.text} to="/register">
           <Button aria-label="" color="inherit">
                 Register
           </Button>
           </Link>
-          <Link component={Button} to="/login">
+          <Link className={classes.text} to="/login">
             <Button aria-label="" color="inherit">
                 Login
             </Button>
           </Link>
           </>}
-          <Link style={{ color: "inherit" }} to="/checkout">
+          <Link className={classes.text} to="/checkout">
             <Button aria-label="" color="inherit">
               <Badge
                 badgeContent={cart.reduce(

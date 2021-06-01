@@ -1,21 +1,8 @@
 import { Component, createContext } from "react";
 import { Product } from "./ProductContext";
 import { Customer } from "./UserContext";
-
-export interface Order {
-  id: number;
-  customer: Customer;
-  cart: CartItem[];
-  deliveryType: string;
-  paymentType: string;
-  totalPrice: number;
-}
 export interface Payment {
   paymentType: string;
-}
-export interface Delivery {
-  deliveryType: string;
-  deliveryPrice: number;
 }
 
 export interface CartItem extends Product {
@@ -31,8 +18,6 @@ interface State {
   cart: CartItem[];
   customer: Customer;
   orderPrice: number;
-  orderId: number;
-  delivery: Delivery;
   payment: Payment;
   invoice: string;
   cardDetails: Card;
@@ -45,8 +30,6 @@ interface ContextValue extends State {
   emptyCart: () => void;
   createCustomer: (customer: Customer) => void;
   getOrderPrice: (cart: CartItem[]) => void;
-  createOrderId: () => number;
-  getDelivery: (delivery: Delivery) => void;
   getPayment: (payment: Payment) => void;
   getCardDetails: (card: Card) => void;
   getInvoiceDetails: (invoice: string) => void;
@@ -72,13 +55,6 @@ export const CartContext = createContext<ContextValue>({
   createCustomer: () => {},
   orderPrice: 0,
   getOrderPrice: () => {},
-  orderId: 0,
-  createOrderId: () => 0,
-  delivery: {
-    deliveryType: "Express",
-    deliveryPrice: 100,
-  },
-  getDelivery: () => {},
   getPayment: () => {},
   payment: {
     paymentType: "Swish",
@@ -108,11 +84,6 @@ class CartProvider extends Component<{}, State> {
       email: "",
     },
     orderPrice: 0,
-    orderId: 0,
-    delivery: {
-      deliveryType: "Express",
-      deliveryPrice: 100,
-    },
     payment: {
       paymentType: "Swish",
     },
@@ -141,19 +112,6 @@ class CartProvider extends Component<{}, State> {
     this.setState({ orderPrice: price });
   };
 
-  createOrderId = () => {
-    const min = 11111;
-    const max = 99999;
-    const orderId = Math.floor(Math.random() * (max - min) + min);
-    this.setState({ orderId });
-    // return for convinience
-    return orderId;
-  };
-
-  getDelivery = (delivery: Delivery) => {
-    this.setState({ delivery });
-  };
-
   getPayment = (payment: Payment) => {
     this.setState({ payment });
   };
@@ -180,11 +138,6 @@ class CartProvider extends Component<{}, State> {
         email: "",
       },
       orderPrice: 0,
-      orderId: 0,
-      delivery: {
-        deliveryType: "Express",
-        deliveryPrice: 100,
-      },
       payment: {
         paymentType: "Swish",
       },
@@ -282,8 +235,6 @@ class CartProvider extends Component<{}, State> {
           removeAllFromCart: this.removeAllFromCart,
           createCustomer: this.createCustomer,
           getOrderPrice: this.getOrderPrice,
-          createOrderId: this.createOrderId,
-          getDelivery: this.getDelivery,
           getPayment: this.getPayment,
           getCardDetails: this.getCardDetails,
           getInvoiceDetails: this.getInvoiceDetails,

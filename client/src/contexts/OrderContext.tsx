@@ -130,8 +130,7 @@ class OrderProvider extends Component<{}, State> {
     const doc = (await this.makeRequest("/api/order", "POST", order));
 
     this.setState({ order: doc })
-
-    alert('New order registered');
+    // alert('New order registered');
     return doc;
   };
 

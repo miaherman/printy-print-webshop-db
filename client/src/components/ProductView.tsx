@@ -66,9 +66,9 @@ function ProductView() {
   if (!product) {
     return (
       <p>
-        Produkten du letar efter finns inte. Till startsidan, klicka&nbsp;
+        The product you are looking after doesn't exist. Return to the start page by clicking&nbsp;
         <Link style={{ color: "inherit" }} to="/">
-          här!
+          here!
         </Link>
       </p>
     );
@@ -105,7 +105,7 @@ function ProductView() {
           variant="contained"
           className={classes.button}
         >
-          Lägg till
+          Add to cart
         </Button>
       </div>
     </div>

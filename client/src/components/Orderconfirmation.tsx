@@ -1,5 +1,5 @@
 import { makeStyles, Theme } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 //import { CartContext } from "../contexts/CartContext";
 import { OrderContext } from "../contexts/OrderContext";
 
@@ -19,18 +19,13 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Orderconfirmation = () => {
   const classes = useStyles();
 
-  // const { orderId: orderIdFromCart, emptyCart } = useContext(CartContext);
   const { order } = useContext(OrderContext);
-  // const [orderId] = useState(orderIdFromCart);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
 
-  //   if (orderId) {
-  //     emptyCart();
-  //   }
-  // }, [orderId, emptyCart]);
+  }, []);
 
   return (
     <div className={classes.root}>
