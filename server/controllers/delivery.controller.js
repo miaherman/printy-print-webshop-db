@@ -6,11 +6,6 @@ exports.getAllDeliverys = async (req, res) => {
   res.status(200).json(docs);
 };
 
-// Hämtar en specifik leverans
-// exports.getDeliveryById = async (req, res) => {
-//   const docs = await DeliveryModel.find({});
-//   res.status(200).json(docs);
-// };
 
 //Skapar ett leveranssätt
 exports.createDelivery = async (req, res) => {

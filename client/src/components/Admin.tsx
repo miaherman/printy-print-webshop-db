@@ -10,15 +10,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 0,
     paddingTop: theme.spacing(15),
     justifyContent: "center",
-    marginBottom: "3rem", 
+    marginBottom: "3rem",
   },
   title: {
     margin: theme.spacing(4, 0, 2),
-    marginLeft: "1rem"
+    marginLeft: "1rem",
   },
   welcomeText: {
     textAlign: "center",
-  }
+  },
 }));
 
 function Admin() {
@@ -26,26 +26,27 @@ function Admin() {
 
   const { adminCheck } = useContext(UserContext);
 
-
   return (
     <main className={classes.admin}>
+      {adminCheck() ? (
+        <div>
+          <h1 className={classes.title}>Hey admin!</h1>
 
-      {adminCheck() ? <div>
-        <h1 className={classes.title} >Hey admin!</h1>
-
-        <Typography variant="h6" className={classes.title}>
-          Products
+          <Typography variant="h6" className={classes.title}>
+            Products
           </Typography>
-        <ProductTable />
+          <ProductTable />
 
-        <Typography variant="h6" className={classes.title}>
-          Orders
-            </Typography>
-        <OrderTable />
-      </div> :
-      
-        <Typography variant="h4" className={classes.welcomeText}>You do not have permission to view this page.</Typography>
-      }
+          <Typography variant="h6" className={classes.title}>
+            Orders
+          </Typography>
+          <OrderTable />
+        </div>
+      ) : (
+        <Typography variant="h4" className={classes.welcomeText}>
+          You do not have permission to view this page.
+        </Typography>
+      )}
     </main>
   );
 }

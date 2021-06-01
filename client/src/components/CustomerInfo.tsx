@@ -157,7 +157,6 @@ function CustomerInfo({ onErrorChange }: Props) {
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     createCustomer({ ...customer, password: e.target.value, role: "customer" });
 
-    // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
     if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(e.target.value)
     ) {

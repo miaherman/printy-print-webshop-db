@@ -11,7 +11,7 @@ import DeliveryInfo from "./DeliveryInfo";
 import PaymentInfo from "./PaymentInfo";
 import Orderinfo from "./Orderinfo";
 import { CartContext } from "../contexts/CartContext";
-import { OrderContext, NewOrder} from "../contexts/OrderContext";
+import { OrderContext, NewOrder } from "../contexts/OrderContext";
 import { useHistory } from "react-router";
 import { CircularProgress } from "@material-ui/core";
 import { UserContext } from "../contexts/UserContext";
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       marginTop: theme.spacing(1),
       marginRight: theme.spacing(1),
-      textDecoration: "none"
+      textDecoration: "none",
     },
     actionsContainer: {
       marginBottom: theme.spacing(2),
@@ -47,9 +47,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
 
     orderForm: {
-      textAlign: "center"
-
-    }
+      textAlign: "center",
+    },
   })
 );
 
@@ -115,9 +114,9 @@ export default function VerticalLinearStepper() {
       }
       editProduct(product, product.stock - 1);
     }
-      createOrder(order);
-      emptyCart();
-      navigateToNextPage();
+    createOrder(order);
+    emptyCart();
+    navigateToNextPage();
   };
 
   const [activeStep, setActiveStep] = useState(0);

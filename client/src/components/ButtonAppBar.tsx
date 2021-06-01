@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   text: {
     color: "white",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   logo: {
-    width: "2rem"
-  }
+    width: "2rem",
+  },
 }));
 
 export default function ButtonAppBar() {
@@ -38,29 +38,30 @@ export default function ButtonAppBar() {
       <AppBar position="fixed">
         <Toolbar>
           <Link className={classes.text} to="/">
-              <img className={classes.logo} src={icon} alt="icon"/>
-            </Link>
-            <div className={classes.flex} >
-            </div>
+            <img className={classes.logo} src={icon} alt="icon" />
+          </Link>
+          <div className={classes.flex}></div>
 
-          {loggedIn ? 
-          <Link className={classes.text} to="/">
-            <Button onClick={logOutUser} aria-label="" color="inherit">
+          {loggedIn ? (
+            <Link className={classes.text} to="/">
+              <Button onClick={logOutUser} aria-label="" color="inherit">
                 Logout
-            </Button>
-          </Link> : 
-          <>
-          <Link className={classes.text} to="/register">
-          <Button aria-label="" color="inherit">
-                Register
-          </Button>
-          </Link>
-          <Link className={classes.text} to="/login">
-            <Button aria-label="" color="inherit">
-                Login
-            </Button>
-          </Link>
-          </>}
+              </Button>
+            </Link>
+          ) : (
+            <>
+              <Link className={classes.text} to="/register">
+                <Button aria-label="" color="inherit">
+                  Register
+                </Button>
+              </Link>
+              <Link className={classes.text} to="/login">
+                <Button aria-label="" color="inherit">
+                  Login
+                </Button>
+              </Link>
+            </>
+          )}
           <Link className={classes.text} to="/checkout">
             <Button aria-label="" color="inherit">
               <Badge
@@ -68,8 +69,7 @@ export default function ButtonAppBar() {
                   (a: any, b: any) => +a + +b.quantity,
                   0
                 )}
-                color="secondary"
-              >
+                color="secondary">
                 <ShoppingCartIcon />
               </Badge>
             </Button>

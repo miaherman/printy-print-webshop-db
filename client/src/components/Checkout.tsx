@@ -17,30 +17,29 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 export default function Checkout() {
-
   const classes = useStyles();
 
   const { cart } = useContext(CartContext);
   let cartItems = cart.reduce((a: any, b: any) => +a + +b.quantity, 0);
-  
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
-if (cartItems > 0) {
-  return (
-    <div className={classes.root}>
-      <Cart />
-      <Container maxWidth="sm">
-        <VerticalLinearStepper />
-      </Container>
-    </div>
-  );
-} else {
-  return (
-    <div className={classes.root}>
-      <Cart />
-    </div>
-  );
-}
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (cartItems > 0) {
+    return (
+      <div className={classes.root}>
+        <Cart />
+        <Container maxWidth="sm">
+          <VerticalLinearStepper />
+        </Container>
+      </div>
+    );
+  } else {
+    return (
+      <div className={classes.root}>
+        <Cart />
+      </div>
+    );
+  }
 }

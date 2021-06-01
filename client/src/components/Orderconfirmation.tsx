@@ -21,18 +21,14 @@ const Orderconfirmation = () => {
   const { order } = useContext(OrderContext);
 
   useEffect(() => {
-
     window.scrollTo(0, 0);
-
   }, []);
 
   return (
     <div className={classes.root}>
       <h2>Thank you for your order!</h2>
       <h3>Order number: {order._id}</h3>
-      <p>
-        An order confirmation has been sent to your email address.
-      </p>
+      <p>An order confirmation has been sent to your email address.</p>
     </div>
   );
 };

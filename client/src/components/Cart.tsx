@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { CartContext } from "../contexts/CartContext";
 import AddCircleOutlineOutlinedIcon from "@material-ui/icons/AddCircleOutlineOutlined";
 import RemoveCircleOutlineOutlinedIcon from "@material-ui/icons/RemoveCircleOutlineOutlined";
-import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import { CardActions, IconButton, Theme } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
@@ -30,13 +30,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function Cart() {
   const classes = useStyles();
-  const { orderPrice, cart, addToCart, removeFromCart, removeAllFromCart } = useContext(CartContext);
+  const { orderPrice, cart, addToCart, removeFromCart, removeAllFromCart } =
+    useContext(CartContext);
 
   return (
     <div style={{ width: "100%" }}>
-      <h2 style={{textAlign: 'center'}}>Cart</h2>
+      <h2 style={{ textAlign: "center" }}>Cart</h2>
       {cart.length === 0 ? (
-        <p style={{textAlign: 'center'}}>Your cart is empty</p>
+        <p style={{ textAlign: "center" }}>Your cart is empty</p>
       ) : (
         <div className={classes.flex}>
           {cart.map((product) => (
@@ -45,8 +46,7 @@ function Cart() {
                 <CardActionArea>
                   <Link
                     style={{ textDecoration: "none" }}
-                    to={`/products/${product.path}`}
-                  >
+                    to={`/products/${product.path}`}>
                     <CardMedia
                       className={classes.media}
                       image={product.image}
@@ -61,15 +61,13 @@ function Cart() {
                     <Typography
                       variant="body2"
                       color="textSecondary"
-                      component="p"
-                    >
+                      component="p">
                       {"Price: " + product.price}
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
-                      component="p"
-                    >
+                      component="p">
                       {"Quantity " + product.quantity}
                     </Typography>
                   </CardContent>
@@ -78,22 +76,19 @@ function Cart() {
                   <IconButton
                     onClick={() => addToCart(product)}
                     aria-label=""
-                    color="inherit"
-                  >
+                    color="inherit">
                     <AddCircleOutlineOutlinedIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => removeFromCart(product)}
                     aria-label=""
-                    color="inherit"
-                  >
+                    color="inherit">
                     <RemoveCircleOutlineOutlinedIcon />
                   </IconButton>
                   <IconButton
                     onClick={() => removeAllFromCart(product)}
                     aria-label=""
-                    color="inherit"
-                  >
+                    color="inherit">
                     <HighlightOffIcon />
                   </IconButton>
                 </CardActions>
@@ -103,7 +98,7 @@ function Cart() {
         </div>
       )}
 
-      <div style={{textAlign: 'center'}}>
+      <div style={{ textAlign: "center" }}>
         <h2>Total price(ex shipping):</h2>
         <h3>{orderPrice} SEK</h3>
       </div>

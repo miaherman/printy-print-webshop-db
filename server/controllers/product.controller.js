@@ -72,7 +72,6 @@ exports.getCategories = async (req, res) => {
   console.log(allCategoriesArray)
 
   res.status(200).json(allCategoriesArray);
-  // ['abstract', 'text']
 };
 
 

@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { OrderContext } from "../contexts/OrderContext";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 const Orderinfo = () => {
-  const { cart, orderPrice, payment } = useContext(
-    CartContext
-  );
-  const { customer } = useContext(UserContext)
-  const { delivery } = useContext(OrderContext)
+  const { cart, orderPrice, payment } = useContext(CartContext);
+  const { customer } = useContext(UserContext);
+  const { delivery } = useContext(OrderContext);
 
   return (
     <div>

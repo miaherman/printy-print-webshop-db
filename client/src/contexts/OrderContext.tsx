@@ -2,7 +2,6 @@ import { Component, createContext } from "react";
 import { Product } from "./ProductContext";
 import { Customer } from "./UserContext";
 
-
 export interface Order {
   _id: string;
   delivery: Delivery;
@@ -10,29 +9,29 @@ export interface Order {
   products: Product[];
   customer: Customer;
 }
-export interface Delivery{
+export interface Delivery {
   shippingMethod: string;
   time: number;
   price: number;
 }
 
-export type NewOrder = Omit<Order, '_id'>;
+export type NewOrder = Omit<Order, "_id">;
 
 interface State {
   products: Product[];
   orders: Order[];
   order: Order;
   deliveries: Delivery[];
-  delivery: Delivery
+  delivery: Delivery;
 }
 
 interface ContextValue extends State {
   getOrdersFromDb: () => void;
   getDeliveryFromDb: () => void;
   getDelivery: (delivery: Delivery) => void;
-  makeRequest: (url: string, method: string, body?: any) => void,
-  createOrder: (order: NewOrder) => void;                                             
-} 
+  makeRequest: (url: string, method: string, body?: any) => void;
+  createOrder: (order: NewOrder) => void;
+}
 
 export const OrderContext = createContext<ContextValue>({
   products: [],
@@ -55,20 +54,20 @@ export const OrderContext = createContext<ContextValue>({
       phoneNr: "",
       email: "",
       role: "",
-      password: ""
+      password: "",
     },
   },
   deliveries: [],
   delivery: {
     shippingMethod: "Express",
     time: 24,
-    price: 100
+    price: 100,
   },
   makeRequest: () => {},
   getOrdersFromDb: () => {},
   createOrder: () => {},
   getDeliveryFromDb: () => {},
-  getDelivery: () => {}
+  getDelivery: () => {},
 });
 
 class OrderProvider extends Component<{}, State> {
@@ -93,13 +92,13 @@ class OrderProvider extends Component<{}, State> {
         phoneNr: "",
         email: "",
         role: "",
-        password: ""
-      }
+        password: "",
+      },
     },
     delivery: {
       shippingMethod: "Express",
       time: 24,
-      price: 100
+      price: 100,
     },
     deliveries: [],
   };
@@ -122,11 +121,11 @@ class OrderProvider extends Component<{}, State> {
     let orders = await this.makeRequest("/api/order", "GET");
     this.setState({ orders: orders });
   };
-  
+
   getDeliveryFromDb = async () => {
     let deliveries = await this.makeRequest("/api/delivery", "GET");
     this.setState({ deliveries: deliveries });
-    console.log(this.state.deliveries)
+    console.log(this.state.deliveries);
   };
 
   getDelivery = (delivery: Delivery) => {
@@ -134,10 +133,10 @@ class OrderProvider extends Component<{}, State> {
   };
 
   createOrder = async (order: NewOrder) => {
-    console.log(order)
-    const doc = (await this.makeRequest("/api/order", "POST", order));
+    console.log(order);
+    const doc = await this.makeRequest("/api/order", "POST", order);
 
-    this.setState({ order: doc })
+    this.setState({ order: doc });
     // alert('New order registered');
     return doc;
   };
@@ -156,9 +155,8 @@ class OrderProvider extends Component<{}, State> {
           getOrdersFromDb: this.getOrdersFromDb,
           createOrder: this.createOrder,
           getDeliveryFromDb: this.getDeliveryFromDb,
-          getDelivery: this.getDelivery
-        }}
-      >
+          getDelivery: this.getDelivery,
+        }}>
         {this.props.children}
       </OrderContext.Provider>
     );

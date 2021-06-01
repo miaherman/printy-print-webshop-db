@@ -17,7 +17,14 @@ interface Props {
 }
 
 function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
-  const { getPayment, payment, cardDetails, invoice, getInvoiceDetails, getCardDetails } = useContext(CartContext);
+  const {
+    getPayment,
+    payment,
+    cardDetails,
+    invoice,
+    getInvoiceDetails,
+    getCardDetails,
+  } = useContext(CartContext);
   const { customer } = useContext(UserContext);
   const [swishNumber, setSwishNumber] = useState(customer.phoneNr);
 
@@ -40,7 +47,10 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
       onErrorChange(hasError || hasMissingInfo);
     } else if (payment.paymentType === "Card") {
       const hasError = Boolean(cardError || dateError || cvcError);
-      const hasMissingInfo = !cardDetails.cardNumber || !cardDetails.cardDate || !cardDetails.cardCvc;
+      const hasMissingInfo =
+        !cardDetails.cardNumber ||
+        !cardDetails.cardDate ||
+        !cardDetails.cardCvc;
       onErrorChange2(hasError || hasMissingInfo);
     } else if (payment.paymentType === "Invoice") {
       const hasError = Boolean(invoiceError);
@@ -61,7 +71,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
     onErrorChange,
     onErrorChange2,
     onErrorChange3,
-    payment.paymentType
+    payment.paymentType,
   ]);
 
   const handleSwishChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -75,8 +85,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   };
 
   const handleCardChange = (e: ChangeEvent<HTMLInputElement>) => {
-    getCardDetails({ ...cardDetails, cardNumber: e.target.value })
-
+    getCardDetails({ ...cardDetails, cardNumber: e.target.value });
 
     if (!/^[0-9]+$/.test(e.target.value)) {
       setCardError("Only numbers allowed in this field");
@@ -86,7 +95,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   };
 
   const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    getCardDetails({ ...cardDetails, cardDate: e.target.value })
+    getCardDetails({ ...cardDetails, cardDate: e.target.value });
 
     if (!/^[0-9]+$/.test(e.target.value)) {
       setDateError("Only numbers allowed in this field");
@@ -96,7 +105,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   };
 
   const handleCvcChange = (e: ChangeEvent<HTMLInputElement>) => {
-    getCardDetails({ ...cardDetails, cardCvc: e.target.value })
+    getCardDetails({ ...cardDetails, cardCvc: e.target.value });
 
     if (!/^[0-9]+$/.test(e.target.value)) {
       setCvcError("Only numbers allowed in this field");
@@ -106,7 +115,7 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
   };
 
   const handleInvoiceChange = (e: ChangeEvent<HTMLInputElement>) => {
-    getInvoiceDetails(e.target.value)
+    getInvoiceDetails(e.target.value);
 
     if (!/^[0-9]+$/.test(e.target.value)) {
       setInvoiceError("Only numbers allowed in this field");
@@ -123,14 +132,9 @@ function PaymentInfo({ onErrorChange, onErrorChange2, onErrorChange3 }: Props) {
           name="payment"
           value={payment.paymentType}
           onChange={handlePayment}
-          row
-        >
+          row>
           <FormControlLabel value="Swish" control={<Radio />} label="Swish" />
-          <FormControlLabel
-            value="Card"
-            control={<Radio />}
-            label="Card"
-          />
+          <FormControlLabel value="Card" control={<Radio />} label="Card" />
           <FormControlLabel
             value="Invoice"
             control={<Radio />}

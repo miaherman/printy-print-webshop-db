@@ -14,14 +14,14 @@ export interface Product {
 
 interface State {
   products: Product[];
-  categories: string[]
+  categories: string[];
 }
 
 interface ContextValue extends State {
-  getProductsFromDb: () => void,
-  makeRequest: (url: string, method: string, body?: any) => void,   
-  editProduct: (editedProduct: Product, newStock: any) => void,                                              
-  getCategories: () => void
+  getProductsFromDb: () => void;
+  makeRequest: (url: string, method: string, body?: any) => void;
+  editProduct: (editedProduct: Product, newStock: any) => void;
+  getCategories: () => void;
 }
 
 export const ProductContext = createContext<ContextValue>({
@@ -30,7 +30,7 @@ export const ProductContext = createContext<ContextValue>({
   getProductsFromDb: () => {},
   editProduct: () => {},
   getCategories: () => {},
-  categories: []
+  categories: [],
 });
 
 class ProductProvider extends Component<{}, State> {
@@ -59,17 +59,20 @@ class ProductProvider extends Component<{}, State> {
   };
 
   editProduct = async (editedProduct: Product, newStock: any) => {
+    const newBody = { ...editedProduct, stock: newStock };
 
-    const newBody = { ...editedProduct, stock: newStock }
-
-    await this.makeRequest(`/api/product/${editedProduct.path}`, "PUT", newBody);
+    await this.makeRequest(
+      `/api/product/${editedProduct.path}`,
+      "PUT",
+      newBody
+    );
     this.getProductsFromDb();
   };
 
   getCategories = async () => {
     let categories = await this.makeRequest("/api/product/categories", "GET");
-    this.setState({ categories })
-  }
+    this.setState({ categories });
+  };
 
   componentDidMount() {
     this.getProductsFromDb();
@@ -84,9 +87,8 @@ class ProductProvider extends Component<{}, State> {
           makeRequest: this.makeRequest,
           getProductsFromDb: this.getProductsFromDb,
           editProduct: this.editProduct,
-          getCategories: this.getCategories
-        }}
-      >
+          getCategories: this.getCategories,
+        }}>
         {this.props.children}
       </ProductContext.Provider>
     );
