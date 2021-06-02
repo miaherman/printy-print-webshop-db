@@ -25,32 +25,49 @@ export default function OrderTable() {
   const classes = useStyles();
   const { orders } = useContext(OrderContext);
 
+    function getOrderDate(specificOrder: any) {
+      let orderDate = new Date(specificOrder.createdAt)
+      orderDate.setDate(orderDate.getDate())
+      let formatted_orderDate = orderDate.getDate() + "/" + (orderDate.getMonth() + 1) + " " + orderDate.getFullYear();
+      return formatted_orderDate
+    }
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Order</TableCell>
+            <TableCell>Date</TableCell>
+            <TableCell align="left">Products</TableCell>
+            <TableCell align="left">Customer</TableCell>
             <TableCell align="left">Shipping</TableCell>
             <TableCell align="left">Price</TableCell>
+            <TableCell align="left">OrderID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {orders.map((order) => (
             <TableRow>
+              <TableCell>
+                {getOrderDate(order)}
+              </TableCell>
               <TableCell
                 className={classes.titleDiv}
                 component="th"
                 scope="row">
                 {order.products.map((product) => (
-                  <p>{product.title}</p>
+                  <p>{product.title + ' (' + product.quantity + ')'}</p>
                 ))}
               </TableCell>
-
+              <TableCell>
+                {order.customer.firstName + ' ' + order.customer.lastName}
+              </TableCell>
               <TableCell align="left">
                 {order.delivery.shippingMethod}
               </TableCell>
               <TableCell align="left">{order.price}</TableCell>
+
+              <TableCell align="left">{order._id}</TableCell>
             </TableRow>
           ))}
         </TableBody>

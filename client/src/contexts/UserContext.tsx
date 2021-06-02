@@ -84,7 +84,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
   };
 
   loginUser = async (email: string, password: string) => {
-    const body = { email: email, password: password };
+    const body = { email: email.toLowerCase(), password: password };
     const customer = await this.makeRequest("/api/user/login", "POST", body);
     console.log(customer);
 
