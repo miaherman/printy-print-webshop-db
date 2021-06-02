@@ -43,3 +43,5 @@ Enjoy!
 `npm start`
 
 # Inloggningsuppgifter till admin:
+användarnamn: admin@hotmail.com
+lösenord: 123
