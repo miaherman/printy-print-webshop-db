@@ -47,7 +47,7 @@ export default function OrderTable() {
         </TableHead>
         <TableBody>
           {orders.map((order) => (
-            <TableRow>
+            <TableRow key={order._id}>
               <TableCell>
                 {getOrderDate(order)}
               </TableCell>
@@ -56,7 +56,7 @@ export default function OrderTable() {
                 component="th"
                 scope="row">
                 {order.products.map((product) => (
-                  <p>{product.title + ' (' + product.quantity + ')'}</p>
+                  <p key={product.title}>{product.title + ' (' + product.quantity + ')'}</p>
                 ))}
               </TableCell>
               <TableCell>

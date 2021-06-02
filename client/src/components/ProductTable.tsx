@@ -47,18 +47,15 @@ export default function ProductTable() {
         </TableHead>
         <TableBody>
           {products.map((product) => (
-            <TableRow>
-
+            <TableRow key={product.title}>
               <TableCell align="left">
-                <Avatar>
-                  <img src={product.image} alt={product.description} />
-                </Avatar>
+                <Avatar variant="square" src={product.image} alt={product.description} />
               </TableCell>
               <TableCell align="left">{product.title}</TableCell>
               <TableCell align="left">{"Stock quantity: " + product.stock}</TableCell>
               <TableCell align="left"><TextField
                   onChange={handleOnchangeStock}
-                  id="quantity"
+                  id={product.title}
                   label="Change stock quantity"
                   margin="normal"
                   InputLabelProps={{

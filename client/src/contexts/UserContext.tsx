@@ -86,14 +86,15 @@ class UserProvider extends Component<RouteComponentProps, State> {
   loginUser = async (email: string, password: string) => {
     const body = { email: email.toLowerCase(), password: password };
     const customer = await this.makeRequest("/api/user/login", "POST", body);
-    console.log(customer);
 
-    if (customer !== "Wrong email or password") {
+    if (customer !== "Wrong email or password" && customer.role === "admin") {
       this.setState({ loggedIn: true, customer });
-      // alert('du e så inloggad så')
+      this.props.history.push("/admin");
+    } else if (customer !== "Wrong email or password" && customer.role === "customer"){
+      this.setState({ loggedIn: true, customer });
       this.props.history.push("/");
     } else {
-      alert("Wrong password!");
+      alert(customer);
     }
   };
 
@@ -102,15 +103,20 @@ class UserProvider extends Component<RouteComponentProps, State> {
   };
 
   registerUser = async (customer: Customer) => {
-    this.createCustomer(customer);
+    
     const register = await this.makeRequest(
       "/api/user/register",
       "POST",
       customer
     );
 
-    alert("New user registered!");
-    // this.props.history.push("/login");
+    if (register !== "A user already exists with that email, please try again!") {
+      alert("New user registered!");
+      this.createCustomer(customer);
+      this.props.history.push("/login");
+    } else {
+      alert(register)
+    }
 
     return register;
   };
@@ -118,8 +124,7 @@ class UserProvider extends Component<RouteComponentProps, State> {
   logOutUser = async () => {
     const logout = await this.makeRequest("/api/user/logout", "DELETE");
     this.checkIfUserIsLoggedIn();
-    alert(logout);
-    // this.props.history.push("/");
+    this.props.history.push("/");
     return logout;
   };
 

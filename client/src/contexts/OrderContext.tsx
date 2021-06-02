@@ -120,13 +120,11 @@ class OrderProvider extends Component<{}, State> {
   getOrdersFromDb = async () => {
     let orders = await this.makeRequest("/api/order", "GET");
     this.setState({ orders: orders });
-    console.log(orders)
   };
 
   getDeliveryFromDb = async () => {
     let deliveries = await this.makeRequest("/api/delivery", "GET");
     this.setState({ deliveries: deliveries });
-    console.log(this.state.deliveries);
   };
 
   getDelivery = (delivery: Delivery) => {
@@ -134,11 +132,8 @@ class OrderProvider extends Component<{}, State> {
   };
 
   createOrder = async (order: NewOrder) => {
-    console.log(order);
     const doc = await this.makeRequest("/api/order", "POST", order);
-
     this.setState({ order: doc });
-    // alert('New order registered');
     return doc;
   };
 

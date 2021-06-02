@@ -20,13 +20,12 @@ exports.createUser = async (req, res) => {
     phoneNr,
     password,
   } = req.body;
-  console.log(req.body);
 
   const existinguser = await UserModel.findOne({ email: req.body.email });
 
   //Kollar om användaren existerar
   if (existinguser) {
-    return res.status(400).json("Username exists");
+    return res.status(400).json("A user already exists with that email, please try again!");
   }
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = new UserModel({
