@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 mongoose.set('useCreateIndex', true);
 
-
 const userSchema = new mongoose.Schema({
   role: { type: String, required: true },
   firstName: { type: String, required: true },
@@ -9,7 +8,7 @@ const userSchema = new mongoose.Schema({
   address: { type: String, required: true },
   zipCode: { type: String, required: true },
   city: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true },
   phoneNr: { type: String, required: true },
   password: { type: String, select: false },
 });

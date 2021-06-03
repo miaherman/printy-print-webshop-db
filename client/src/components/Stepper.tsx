@@ -110,13 +110,13 @@ export default function VerticalLinearStepper() {
             product.title
         );
         navigateToStartPage();
-        break;
+      } else {
+        createOrder(order);
+        editProduct(product, product.stock - product.quantity);
+        emptyCart();
+        navigateToNextPage();
       }
-      editProduct(product, product.stock - 1);
     }
-    createOrder(order);
-    emptyCart();
-    navigateToNextPage();
   };
 
   const [activeStep, setActiveStep] = useState(0);

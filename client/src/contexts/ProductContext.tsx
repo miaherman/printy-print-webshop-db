@@ -59,7 +59,7 @@ class ProductProvider extends Component<{}, State> {
   };
 
   editProduct = async (editedProduct: Product, newStock: any) => {
-    const newBody = { ...editedProduct, stock: newStock };
+    const newBody = { ...editedProduct, quantity: 0, stock: newStock };
 
     await this.makeRequest(
       `/api/product/${editedProduct.path}`,
