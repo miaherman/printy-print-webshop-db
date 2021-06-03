@@ -1,12 +1,6 @@
 const UserModel = require("../models/user.model");
 const bcrypt = require("bcrypt");
 
-//Hämtar alla våra användare
-exports.getAllUsers = async (req, res) => {
-  const docs = await UserModel.find({});
-  res.status(200).json(docs);
-};
-
 //Skapar en användare
 exports.createUser = async (req, res) => {
   const {

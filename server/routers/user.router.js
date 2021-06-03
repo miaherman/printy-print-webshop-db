@@ -4,9 +4,6 @@ const router = express.Router();
 const controller = require("../controllers/user.controller"); 
 const secure = require("../middleware/secure");
 
-//Hämtar alla våra användare
-router.get("/api/user", controller.getAllUsers);
-
 //Skapar en användare
 router.post("/api/user/register", controller.createUser);
 

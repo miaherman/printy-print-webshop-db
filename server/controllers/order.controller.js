@@ -6,12 +6,6 @@ exports.getAllOrders = async (req, res) => {
   res.status(200).json(docs);
 };
 
-// Hämtar en specifik order
-exports.getOrderById = async (req, res) => {
-  const docs = await OrderModel.find({});
-  res.status(200).json(docs);
-};
-
 //Skapar en order
 exports.createOrder = async (req, res) => {
   
@@ -25,7 +19,6 @@ exports.createOrder = async (req, res) => {
   });
 
   if (newOrder) {
-    console.log(newOrder);
     const doc = await OrderModel.create(newOrder);
     return res.status(201).json(doc);
   } else {

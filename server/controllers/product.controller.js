@@ -7,12 +7,6 @@ exports.getAllProducts = async (req, res) => {
   res.status(200).json(docs);
 };
 
-// Hämtar en specifik produkt
-exports.getProductById = async (req, res) => {
-  const docs = await ProductModel.find({});
-  res.status(200).json(docs);
-};
-
 //Skapar en produkt
 exports.createProduct = async (req, res) => {
   const newProduct = new ProductModel({
@@ -43,19 +37,6 @@ exports.updateProduct = async (req, res) => {
   await updatedProduct.save();
   res.json("Product updated");
 };
-
-//Tar bort en produkt
-exports.deleteProduct = async (req, res) => {
-  const doc = await ProductModel.findOne({ _id: req.body._id });
-
-  if (doc) {
-    await doc.remove();
-    res.status(201).json(doc);
-  } else {
-    res.status(404).json("Product does not exist");
-  }
-};
-
 
 exports.getCategories = async (req, res) => {
   const docs = await ProductModel.find({});
